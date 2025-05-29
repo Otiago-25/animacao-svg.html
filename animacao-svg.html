@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animacao SVG</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Para centralizar o container dos SVGs */
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Importante para o iframe */
+            background-color: transparent; /* Para o fundo do iframe ser transparente */
+        }
+        .svg-container {
+            position: relative;
+            width: 100%; /* Ocupará 100% do iframe */
+            height: 100%; /* Ocupará 100% do iframe */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #background-svg {
+            position: absolute; /* Posicionado dentro do .svg-container */
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+        #foreground-svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(25deg);
+            z-index: 2;
+            width: 30%; /* Ajuste esta % em relação ao tamanho do iframe (ex: 30% de 150px) */
+            height: auto;
+        }
+        .rotate-animation {
+            animation: rotate 10s linear infinite;
+            transform-origin: 50% 50%;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="svg-container">
+        <svg id="background-svg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+            <g class="rotate-animation">
+                <path d="M32.08,49.49l.64-.79,10.17,8.23,5.07-6.27.72.58-5.71,7.06-10.88-8.81Z" fill="#fff"/>
+                </g>
+        </svg>
+        <svg id="foreground-svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 50 50">
+            <path d="M5.64,11.71l.17-.22,2.88,2.15,1.33-1.77.2.15-1.5,2-3.08-2.31Z" fill="#fff"/>
+            </svg>
+    </div>
+</body>
+</html>
