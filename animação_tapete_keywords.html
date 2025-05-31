@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação de Palavras-Chave (300x300px, Texto Maior)</title>
+<title>Animação de Palavras-Chave (500x500px, Texto Gigante)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap'); /* Adicionado peso 900 para fontes extra grandes */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap'); /* Pesos bem fortes */
 
   body {
     margin: 0;
@@ -20,22 +20,23 @@
   }
 
   .dynamic-keyword-container {
-    width: 300px;  /* LARGURA FIXA */
-    height: 300px; /* ALTURA FIXA */
+    width: 500px;  /* LARGURA FIXA */
+    height: 500px; /* ALTURA FIXA */
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
     padding: 0;
     background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
+                                  /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */
   }
 
-  /* GRADIENTE LATERAL ESTÁ REMOVIDO CONFORME PEDIDO ANTERIOR */
+  /* GRADIENTE LATERAL REMOVIDO */
 
   .keyword-scroller {
     display: flex;
     width: 200%;
     height: 100%;
-    animation: horizontal-scroll 90s linear infinite; /* VELOCIDADE - pode ajustar */
+    animation: horizontal-scroll 100s linear infinite; /* VELOCIDADE - pode ajustar */
     position: relative;
   }
 
@@ -44,49 +45,49 @@
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-content: center; /* Tenta centrar as linhas de palavras verticalmente */
-    /* Gap em EM para escalar com o font-size dos spans */
-    gap: 0.2em 0.3em; /* (vertical e horizontal) - ajuste para densidade */
-    padding: 0 0.1em; /* Padding muito pequeno para as palavras não colarem nas bordas do grupo */
+    align-content: center;
+    /* Gap em EM para escalar com o font-size dos spans, valores pequenos devido ao tamanho da fonte */
+    gap: 0.1em 0.15em; /* (vertical e horizontal) */
+    padding: 0 0.05em; /* Padding mínimo */
     box-sizing: border-box;
   }
 
   .keyword-group + .keyword-group {
-    margin-left: 0; /* Blocos adjacentes, sem sobreposição */
+    margin-left: 0; /* Blocos adjacentes */
   }
 
   .keyword-scroller span {
-    font-weight: 500; /* Peso base */
+    font-weight: 700; /* Peso base mais forte */
     color: #FFFFFF; /* LETRAS A BRANCO */
-    padding: 0.05em 0.1em; /* Padding individual das palavras, muito pequeno */
+    padding: 0.02em 0.05em; /* Padding individual mínimo */
     background-color: transparent;
     white-space: nowrap;
     display: inline-block;
-    font-size: 3.8em; /* TAMANHO DA FONTE AUMENTADO SIGNIFICATIVAMENTE */
-    line-height: 1.2; /* Ajustado para texto muito grande */
-    text-transform: uppercase; /* Opcional: para um estilo mais impactante com fontes grandes */
+    font-size: 5.8em; /* TAMANHO DA FONTE GIGANTE - ajuste conforme necessário! */
+    line-height: 1.15; /* Linha um pouco mais apertada para texto gigante */
+    text-transform: uppercase; /* Mantido para impacto */
   }
 
-  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) COM FONTES MAIORES */
+  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) COM FONTES GIGANTES */
   .keyword-group span:nth-child(4n+1) {
-    transform: translateY(-0.06em); /* Deslocamentos relativos ao novo font-size */
-    font-weight: 800; /* Mais grosso */
-    font-size: 4em;   /* Variação de tamanho */
+    transform: translateY(-0.05em);
+    font-weight: 900; /* Super grosso */
+    font-size: 6.0em;   /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+2) {
-    transform: translateY(0.04em);
-    font-size: 3.6em; /* Variação de tamanho */
-    color: #EAEAEA; /* Variação subtil no branco */
+    transform: translateY(0.03em);
+    font-size: 5.6em; /* Variação de tamanho */
+    color: #F0F0F0;
   }
   .keyword-group span:nth-child(4n+3) {
-    transform: translateY(-0.03em);
-    font-weight: 900; /* Ainda mais grosso */
-    font-size: 3.9em; /* Variação de tamanho */
+    transform: translateY(-0.02em);
+    font-weight: 800;
+    font-size: 5.9em; /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+4) {
-    transform: translateY(0.05em);
-    font-size: 3.7em; /* Variação de tamanho */
-    color: #F5F5F5; /* Variação subtil no branco */
+    transform: translateY(0.04em);
+    font-size: 5.7em; /* Variação de tamanho */
+    color: #EAEAEA;
   }
 
   @keyframes horizontal-scroll {
@@ -100,26 +101,22 @@
 <div class="dynamic-keyword-container">
   <div class="keyword-scroller">
     <div class="keyword-group">
-      <span>MARCA</span> <span>AÇÃO</span> <span>WEB</span>
-      <span>FOTO</span> <span>VÍDEO</span> <span>REDE</span>
-      <span>SEO</span> <span>ADS</span> <span>ARTE</span>
-      <span>META</span> <span>FOCO</span> <span>LUZ</span>
-      <span>COR</span> <span>SOM</span> <span>SITE</span>
-      <span>PAIXÃO</span> <span>LOCAL</span> <span>TOP</span>
-      <span>MARCA</span> <span>AÇÃO</span> <span>WEB</span>
-      <span>FOTO</span> <span>VÍDEO</span> <span>REDE</span>
-      <span>PAIXÃO</span> <span>LOCAL</span> <span>TOP</span>
+      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
+      <span>COR</span> <span>SITE</span> <span>LAB</span> <span>HUB</span>
+      <span>DATA</span> <span>REDE</span> <span>UX</span> <span>UI</span>
+      <span>SEO</span> <span>ADS</span> <span>GO</span> <span>TOP</span>
+      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
+      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
+      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
     </div>
     <div class="keyword-group">
-      <span>MARCA</span> <span>AÇÃO</span> <span>WEB</span>
-      <span>FOTO</span> <span>VÍDEO</span> <span>REDE</span>
-      <span>SEO</span> <span>ADS</span> <span>ARTE</span>
-      <span>META</span> <span>FOCO</span> <span>LUZ</span>
-      <span>COR</span> <span>SOM</span> <span>SITE</span>
-      <span>PAIXÃO</span> <span>LOCAL</span> <span>TOP</span>
-      <span>MARCA</span> <span>AÇÃO</span> <span>WEB</span>
-      <span>FOTO</span> <span>VÍDEO</span> <span>REDE</span>
-      <span>PAIXÃO</span> <span>LOCAL</span> <span>TOP</span>
+      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
+      <span>COR</span> <span>SITE</span> <span>LAB</span> <span>HUB</span>
+      <span>DATA</span> <span>REDE</span> <span>UX</span> <span>UI</span>
+      <span>SEO</span> <span>ADS</span> <span>GO</span> <span>TOP</span>
+      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
+      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
+      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
     </div>
   </div>
 </div>
