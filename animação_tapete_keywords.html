@@ -3,43 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação de Palavras-Chave Responsiva</title>
+<title>Animação de Palavras-Chave Responsiva Mais Rápida</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
 
-  html, body { /* Garantir que o html e body do iframe ocupam o espaço */
+  html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evitar scrollbars no próprio iframe se o conteúdo exceder */
+    overflow: hidden;
   }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: transparent; /* Fundo do body do iframe transparente */
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .dynamic-keyword-container {
-    width: 100%;  /* OCUPA A LARGURA TOTAL DO BLOCO CARRD */
-    height: 100%; /* OCUPA A ALTURA TOTAL DO BLOCO CARRD (o bloco Carrd precisa ter uma altura definida) */
-                  /* Alternativa: height: 40vh; ou outra unidade que funcione para si */
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
     padding: 0;
-    background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
+    background-color: transparent;
+    /* LEMBRE-SE: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
+    /* E o FADE LATERAL foi removido a pedido anteriormente. Se quiser de volta, precisa adicionar o CSS dos ::before e ::after */
   }
-
-  /* GRADIENTE LATERAL REMOVIDO */
 
   .keyword-scroller {
     display: flex;
     width: 200%;
     height: 100%;
-    animation: horizontal-scroll 100s linear infinite; /* VELOCIDADE - pode ajustar */
+    /* VELOCIDADE AJUSTADA AQUI */
+    animation: horizontal-scroll 50s linear infinite; /* Reduzido de 100s para 50s */
     position: relative;
   }
 
@@ -49,14 +49,13 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    /* Gap em EM para escalar com o font-size (que será em vh) */
-    gap: 0.1em 0.15em; /* (vertical e horizontal) */
+    gap: 0.1em 0.15em;
     padding: 0 0.05em;
     box-sizing: border-box;
   }
 
   .keyword-group + .keyword-group {
-    margin-left: 0; /* Blocos adjacentes */
+    margin-left: 0; /* Blocos adjacentes, sem sobreposição nem fade conforme últimas versões */
   }
 
   .keyword-scroller span {
@@ -66,34 +65,29 @@
     background-color: transparent;
     white-space: nowrap;
     display: inline-block;
-    /* TAMANHO DA FONTE RESPONSIVO COM VH (Viewport Height) */
-    /* 20vh significa que a fonte terá 20% da altura do iframe/viewport. */
-    /* Se quer 3-4 linhas, e line-height é ~1.2, então font-size ~ (100vh / 4 linhas / 1.2) = ~20vh */
-    font-size: 22vh; /* Ajuste este valor para o tamanho desejado e número de linhas! */
-    line-height: 1.1; /* Linha apertada para texto gigante e responsivo */
+    font-size: 22vh; /* MANTIDO TAMANHO DA FONTE RESPONSIVO COM VH */
+    line-height: 1.1;
     text-transform: uppercase;
   }
 
-  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) COM FONTES RESPONSIVAS */
-  /* As variações de font-size também usam VH para consistência */
   .keyword-group span:nth-child(4n+1) {
-    transform: translateY(-0.04em); /* Deslocamento em EM, relativo ao font-size do span */
+    transform: translateY(-0.04em);
     font-weight: 900;
-    font-size: 23vh;   /* Variação de tamanho */
+    font-size: 23vh;
   }
   .keyword-group span:nth-child(4n+2) {
     transform: translateY(0.03em);
-    font-size: 21vh; /* Variação de tamanho */
+    font-size: 21vh;
     color: #F0F0F0;
   }
   .keyword-group span:nth-child(4n+3) {
     transform: translateY(-0.02em);
     font-weight: 800;
-    font-size: 22.5vh; /* Variação de tamanho */
+    font-size: 22.5vh;
   }
   .keyword-group span:nth-child(4n+4) {
     transform: translateY(0.04em);
-    font-size: 20.5vh; /* Variação de tamanho */
+    font-size: 20.5vh;
     color: #EAEAEA;
   }
 
