@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação de Palavras-Chave (Blocos Separados, Sem Fade)</title>
+<title>Animação de Palavras-Chave (200x200px)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap');
 
@@ -15,80 +15,81 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100vh; /* Para centralizar na página de teste, no iframe ocupará o tamanho do iframe */
     overflow: hidden;
   }
 
   .dynamic-keyword-container {
-    width: 100%;
-    /* max-width: 450px; */
-    height: 230px; /* ALTURA AJUSTADA PARA ~3-4 LINHAS DE TEXTO GRANDE */
-    overflow: hidden; /* Continua essencial */
+    width: 200px;  /* LARGURA FIXA */
+    height: 200px; /* ALTURA FIXA */
+    overflow: hidden;
     position: relative;
     box-sizing: border-box;
-    padding: 0;
+    padding: 0; /* Sem padding no container para aproveitar todo o espaço */
     background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
-     /* LEMBRE-SE: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
+                                  /* Lembre-se: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
   }
 
-  /* GRADIENTE LATERAL REMOVIDO */
-  /* .dynamic-keyword-container::before,
-  .dynamic-keyword-container::after { ... } */
+  /* GRADIENTE LATERAL FOI REMOVIDO NA VERSÃO ANTERIOR A PEDIDO */
 
   .keyword-scroller {
     display: flex;
-    width: 200%;
+    width: 200%; /* Dobro da largura do container para o loop de 2 grupos */
     height: 100%;
     animation: horizontal-scroll 90s linear infinite; /* VELOCIDADE - pode ajustar */
     position: relative;
-    /* z-index não é mais tão crítico sem o fade por cima */
   }
 
   .keyword-group {
-    width: 50%;
+    width: 50%; /* Cada grupo ocupa metade do scroller (a largura do container) */
     height: 100%;
     display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    gap: 0.3em 0.5em;
-    padding: 0 0.2em; /* Padding pequeno para as palavras não colarem nas bordas do grupo */
+    flex-wrap: wrap; /* Permite que as palavras quebrem linha */
+    align-content: center; /* Tenta centrar as linhas de palavras verticalmente */
+    /* Gap em EM para escalar com o font-size dos spans */
+    gap: 0.3em 0.4em; /* (vertical e horizontal) - ajuste para densidade */
+    /* Padding pequeno para as palavras não colarem nas bordas do grupo */
+    /* Com container de 200px, este padding interno pode ser mínimo ou zero */
+    padding: 0 0.1em;
     box-sizing: border-box;
   }
 
-  /* REMOVIDA A SOBREPOSIÇÃO - BLOCOS APENAS ADJACENTES */
   .keyword-group + .keyword-group {
-    margin-left: 0; /* Sem margem negativa, sem sobreposição */
+    margin-left: 0; /* Blocos adjacentes, sem sobreposição */
   }
 
   .keyword-scroller span {
     font-weight: 500;
     color: #FFFFFF; /* LETRAS A BRANCO */
-    padding: 0.1em 0.25em;
+    /* Padding em EM para escalar com a fonte */
+    padding: 0.05em 0.15em; /* Padding individual das palavras, bem pequeno */
     background-color: transparent;
-    white-space: nowrap;
+    white-space: nowrap; /* Cada palavra/frase numa só linha */
     display: inline-block;
-    font-size: 2.6em; /* TAMANHO DA FONTE BEM GRANDE */
-    line-height: 1.3;
+    font-size: 2.6em; /* TAMANHO DA FONTE BEM GRANDE - pode precisar de reduzir para 200x200px */
+    line-height: 1.25; /* Ajustado para texto grande em espaço limitado */
   }
 
   /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) */
+  /* Os valores de translateY e font-size foram mantidos relativos (em) */
   .keyword-group span:nth-child(4n+1) {
-    transform: translateY(-0.08em);
+    transform: translateY(-0.07em);
     font-weight: 700;
-    font-size: 2.7em;
+    font-size: 2.7em; /* Relativo ao font-size base do body, ou 2.7em se span já tem font-size */
+                     /* Para ser relativo ao 2.6em do span, seria font-size: 1.04em (2.7/2.6) */
   }
   .keyword-group span:nth-child(4n+2) {
-    transform: translateY(0.05em);
+    transform: translateY(0.04em);
     font-size: 2.5em;
     color: #E8E8E8;
   }
   .keyword-group span:nth-child(4n+3) {
-    transform: translateY(-0.03em);
+    transform: translateY(-0.02em);
     font-weight: 800;
     font-size: 2.65em;
   }
   .keyword-group span:nth-child(4n+4) {
-    transform: translateY(0.06em);
+    transform: translateY(0.05em);
     font-size: 2.45em;
     color: #F0F0F0;
   }
@@ -104,30 +105,26 @@
 <div class="dynamic-keyword-container">
   <div class="keyword-scroller">
     <div class="keyword-group">
-      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
-      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
-      <span>SEO FELGUEIRAS</span> <span>ADS ONLINE</span> <span>DESIGN</span>
-      <span>ESTRATÉGIA</span> <span>RESULTADOS</span> <span>INOVAÇÃO</span>
-      <span>CONSULTORIA</span> <span>SUA MARCA</span> <span>ENGAJAMENTO</span>
-      <span>VISIBILIDADE</span> <span>PARCERIA</span> <span>SUCESSO</span> <span>BRANDING</span>
-      <span>UX/UI</span> <span>COPYWRITING</span> <span>STORYTELLING</span> <span>PERFORMANCE</span>
-      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
-      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
-      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
-      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
+      <span>MARKETING</span> <span>CONTEÚDO</span> <span>SITES</span>
+      <span>FOTOS</span> <span>VÍDEOS</span> <span>SOCIAL</span>
+      <span>SEO</span> <span>ADS</span> <span>DESIGN</span>
+      <span>IDEIAS</span> <span>METAS</span> <span>UX/UI</span>
+      <span>MARCA</span> <span>LOCAL</span> <span>IMPACTO</span>
+      <span>INOVAR</span> <span>CRIAR</span> <span>FELGUEIRAS</span>
+      <span>MARKETING</span> <span>CONTEÚDO</span> <span>SITES</span>
+      <span>FOTOS</span> <span>VÍDEOS</span> <span>SOCIAL</span>
+      <span>INOVAR</span> <span>CRIAR</span> <span>FELGUEIRAS</span>
     </div>
     <div class="keyword-group">
-      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
-      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
-      <span>SEO FELGUEIRAS</span> <span>ADS ONLINE</span> <span>DESIGN</span>
-      <span>ESTRATÉGIA</span> <span>RESULTADOS</span> <span>INOVAÇÃO</span>
-      <span>CONSULTORIA</span> <span>SUA MARCA</span> <span>ENGAJAMENTO</span>
-      <span>VISIBILIDADE</span> <span>PARCERIA</span> <span>SUCESSO</span> <span>BRANDING</span>
-      <span>UX/UI</span> <span>COPYWRITING</span> <span>STORYTELLING</span> <span>PERFORMANCE</span>
-      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
-      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
-      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
-      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
+      <span>MARKETING</span> <span>CONTEÚDO</span> <span>SITES</span>
+      <span>FOTOS</span> <span>VÍDEOS</span> <span>SOCIAL</span>
+      <span>SEO</span> <span>ADS</span> <span>DESIGN</span>
+      <span>IDEIAS</span> <span>METAS</span> <span>UX/UI</span>
+      <span>MARCA</span> <span>LOCAL</span> <span>IMPACTO</span>
+      <span>INOVAR</span> <span>CRIAR</span> <span>FELGUEIRAS</span>
+      <span>MARKETING</span> <span>CONTEÚDO</span> <span>SITES</span>
+      <span>FOTOS</span> <span>VÍDEOS</span> <span>SOCIAL</span>
+      <span>INOVAR</span> <span>CRIAR</span> <span>FELGUEIRAS</span>
     </div>
   </div>
 </div>
