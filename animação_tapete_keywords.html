@@ -3,8 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação de Palavras-Chave Responsiva Mais Rápida</title>
+<title>Animação Palavras-Chave Marketing Digital</title>
 <style>
+  /* Cole aqui o CSS COMPLETO da ÚLTIMA VERSÃO "Responsiva Mais Rápida" */
+  /* Alterações principais dessa versão: */
+  /* .keyword-scroller { animation: horizontal-scroll 50s linear infinite; } */
+  /* .keyword-scroller span { font-size: 22vh; color: #FFFFFF; } */
+  /* .dynamic-keyword-container { background-color: transparent; } */
+  /* Sem ::before, ::after (fade) e com margin-left: 0; no segundo .keyword-group */
+
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
 
   html, body {
@@ -31,15 +38,13 @@
     padding: 0;
     background-color: transparent;
     /* LEMBRE-SE: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
-    /* E o FADE LATERAL foi removido a pedido anteriormente. Se quiser de volta, precisa adicionar o CSS dos ::before e ::after */
   }
 
   .keyword-scroller {
     display: flex;
     width: 200%;
     height: 100%;
-    /* VELOCIDADE AJUSTADA AQUI */
-    animation: horizontal-scroll 20s linear infinite; /* Reduzido de 100s para 50s */
+    animation: horizontal-scroll 50s linear infinite; /* VELOCIDADE RÁPIDA */
     position: relative;
   }
 
@@ -49,46 +54,47 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    gap: 0.1em 0.15em;
+    gap: 0.1em 0.15em; /* Espaçamento relativo à fonte */
     padding: 0 0.05em;
     box-sizing: border-box;
   }
 
   .keyword-group + .keyword-group {
-    margin-left: 0; /* Blocos adjacentes, sem sobreposição nem fade conforme últimas versões */
+    margin-left: 0; /* Blocos adjacentes, sem sobreposição */
   }
 
   .keyword-scroller span {
     font-weight: 700;
     color: #FFFFFF; /* LETRAS A BRANCO */
-    padding: 0.02em 0.05em;
+    padding: 0.02em 0.05em; /* Padding mínimo relativo à fonte */
     background-color: transparent;
     white-space: nowrap;
     display: inline-block;
-    font-size: 22vh; /* MANTIDO TAMANHO DA FONTE RESPONSIVO COM VH */
+    font-size: 22vh; /* TAMANHO DA FONTE RESPONSIVO COM VH */
     line-height: 1.1;
-    text-transform: uppercase;
+    text-transform: uppercase; /* Para impacto com fontes grandes */
   }
 
+  /* Efeitos "desalinhados" */
   .keyword-group span:nth-child(4n+1) {
     transform: translateY(-0.04em);
-    font-weight: 900;
-    font-size: 23vh;
+    font-weight: 900; /* Mais destaque */
+    font-size: 23vh;   /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+2) {
     transform: translateY(0.03em);
-    font-size: 21vh;
-    color: #F0F0F0;
+    font-size: 21vh; /* Variação de tamanho */
+    color: #F0F0F0; /* Branco ligeiramente diferente */
   }
   .keyword-group span:nth-child(4n+3) {
     transform: translateY(-0.02em);
     font-weight: 800;
-    font-size: 22.5vh;
+    font-size: 22.5vh; /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+4) {
     transform: translateY(0.04em);
-    font-size: 20.5vh;
-    color: #EAEAEA;
+    font-size: 20.5vh; /* Variação de tamanho */
+    color: #EAEAEA; /* Branco ligeiramente diferente */
   }
 
   @keyframes horizontal-scroll {
@@ -102,22 +108,28 @@
 <div class="dynamic-keyword-container">
   <div class="keyword-scroller">
     <div class="keyword-group">
-      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
-      <span>COR</span> <span>SITE</span> <span>LAB</span> <span>HUB</span>
-      <span>DATA</span> <span>REDE</span> <span>UX</span> <span>UI</span>
-      <span>SEO</span> <span>ADS</span> <span>GO</span> <span>TOP</span>
-      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
-      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
-      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
+      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
+      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
+      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
+      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
+      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
+      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
+      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
+      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
+      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
+      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
     </div>
     <div class="keyword-group">
-      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
-      <span>COR</span> <span>SITE</span> <span>LAB</span> <span>HUB</span>
-      <span>DATA</span> <span>REDE</span> <span>UX</span> <span>UI</span>
-      <span>SEO</span> <span>ADS</span> <span>GO</span> <span>TOP</span>
-      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
-      <span>ARTE</span> <span>WEB</span> <span>LUZ</span> <span>SOM</span>
-      <span>ÁGIL</span> <span>FOCO</span> <span>NOVO</span> <span>FLUX</span>
+      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
+      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
+      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
+      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
+      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
+      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
+      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
+      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
+      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
+      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
     </div>
   </div>
 </div>
