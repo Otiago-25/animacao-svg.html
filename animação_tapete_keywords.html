@@ -3,16 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação Palavras-Chave Marketing Digital</title>
+<title>Palavras-Chave Levitantes</title>
 <style>
-  /* Cole aqui o CSS COMPLETO da ÚLTIMA VERSÃO "Responsiva Mais Rápida" */
-  /* Alterações principais dessa versão: */
-  /* .keyword-scroller { animation: horizontal-scroll 50s linear infinite; } */
-  /* .keyword-scroller span { font-size: 22vh; color: #FFFFFF; } */
-  /* .dynamic-keyword-container { background-color: transparent; } */
-  /* Sem ::before, ::after (fade) e com margin-left: 0; no segundo .keyword-group */
-
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
   html, body {
     height: 100%;
@@ -23,116 +16,176 @@
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: transparent;
-    display: flex;
+    background-color: transparent; /* Fundo do body do iframe transparente */
+    display: flex; /* Necessário para o container ocupar espaço se não tiver dimensões fixas */
     align-items: center;
     justify-content: center;
   }
 
-  .dynamic-keyword-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding: 0;
-    background-color: transparent;
-    /* LEMBRE-SE: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
+  .levitating-container {
+    width: 100%;  /* OCUPA A LARGURA TOTAL DO BLOCO CARRD */
+    height: 100%; /* OCUPA A ALTURA TOTAL DO BLOCO CARRD (o bloco Carrd precisa ter uma altura definida) */
+    position: relative; /* Contexto para posicionamento absoluto das palavras */
+    overflow: hidden; /* Palavras não saem do container */
+    background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
+    /* Se quiser um fundo escuro fixo para o container, descomente abaixo e ajuste o ::before/::after da página principal */
+    /* background-color: #121212; */
   }
 
-  .keyword-scroller {
-    display: flex;
-    width: 200%;
-    height: 100%;
-    animation: horizontal-scroll 50s linear infinite; /* VELOCIDADE RÁPIDA */
-    position: relative;
-  }
-
-  .keyword-group {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    gap: 0.1em 0.15em; /* Espaçamento relativo à fonte */
-    padding: 0 0.05em;
-    box-sizing: border-box;
-  }
-
-  .keyword-group + .keyword-group {
-    margin-left: 0; /* Blocos adjacentes, sem sobreposição */
-  }
-
-  .keyword-scroller span {
-    font-weight: 700;
-    color: #FFFFFF; /* LETRAS A BRANCO */
-    padding: 0.02em 0.05em; /* Padding mínimo relativo à fonte */
-    background-color: transparent;
+  .keyword {
+    position: absolute; /* Permite posicionamento livre */
+    color: #FFFFFF;    /* Texto branco base */
     white-space: nowrap;
-    display: inline-block;
-    font-size: 22vh; /* TAMANHO DA FONTE RESPONSIVO COM VH */
-    line-height: 1.1;
-    text-transform: uppercase; /* Para impacto com fontes grandes */
+    text-transform: uppercase;
+    font-weight: 400;
+    opacity: 0.7; /* Opacidade base para palavras "distantes" */
+    /* Animações base - serão variadas */
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; /* Faz a animação ir e vir */
   }
 
-  /* Efeitos "desalinhados" */
-  .keyword-group span:nth-child(4n+1) {
-    transform: translateY(-0.04em);
-    font-weight: 900; /* Mais destaque */
-    font-size: 23vh;   /* Variação de tamanho */
-  }
-  .keyword-group span:nth-child(4n+2) {
-    transform: translateY(0.03em);
-    font-size: 21vh; /* Variação de tamanho */
-    color: #F0F0F0; /* Branco ligeiramente diferente */
-  }
-  .keyword-group span:nth-child(4n+3) {
-    transform: translateY(-0.02em);
-    font-weight: 800;
-    font-size: 22.5vh; /* Variação de tamanho */
-  }
-  .keyword-group span:nth-child(4n+4) {
-    transform: translateY(0.04em);
-    font-size: 20.5vh; /* Variação de tamanho */
-    color: #EAEAEA; /* Branco ligeiramente diferente */
+  /* Palavras Chave de Marketing em Destaque */
+  .highlight-keyword {
+    font-weight: 900; /* Bem destacado */
+    opacity: 1;
+    color: #FFFFFF; /* Branco puro */
+    /* text-shadow: 0 0 12px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.3); /* Efeito de brilho subtil */
+    z-index: 10; /* Para garantir que ficam por cima de outras, se houver sobreposição */
   }
 
-  @keyframes horizontal-scroll {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
+  /* DEFINIÇÃO DAS ANIMAÇÕES DE LEVITAÇÃO */
+  @keyframes driftXY { /* Movimento diagonal suave */
+    0% { transform: translate(0px, 0px) scale(1); }
+    100% { transform: translate(15px, 10px) scale(1.02); }
   }
+
+  @keyframes driftYScale { /* Movimento vertical com escala (profundidade) */
+    0% { transform: translateY(0px) scale(0.95); opacity: 0.6; }
+    100% { transform: translateY(-10px) scale(1.05); opacity: 0.85;}
+  }
+
+  @keyframes slowPulse { /* Pulsação subtil de opacidade e tamanho */
+    0% { opacity: 0.7; transform: scale(0.98); }
+    100% { opacity: 0.9; transform: scale(1.02); }
+  }
+  
+  @keyframes gentleDriftX { /* Movimento horizontal mais longo */
+    0% { transform: translateX(-10px); }
+    100% { transform: translateX(10px); }
+  }
+
+
+  /* ESTILOS E POSIÇÕES INDIVIDUAIS PARA CADA PALAVRA (EXEMPLO PARA 12 PALAVRAS) */
+  /* Pode adicionar mais palavras seguindo este padrão */
+
+  /* Palavras de Marketing em Destaque */
+  .keyword:nth-child(1) { /* SEO */
+    top: 15%; left: 20%;
+    font-size: 10vh; /* Tamanho relativo à altura do viewport/iframe */
+    animation-name: driftXY, slowPulse;
+    animation-duration: 12s, 8s;
+    animation-delay: -2s, 0s;
+  }
+  .keyword:nth-child(2) { /* ADS */
+    top: 40%; left: 65%;
+    font-size: 11vh;
+    animation-name: driftYScale, gentleDriftX;
+    animation-duration: 10s, 14s;
+    animation-delay: -5s, -1s;
+  }
+  .keyword:nth-child(3) { /* CONTEÚDO */
+    top: 65%; left: 15%;
+    font-size: 9vh;
+    animation-name: driftXY, slowPulse;
+    animation-duration: 14s, 7s;
+    animation-delay: -1s, -0.5s;
+  }
+  .keyword:nth-child(4) { /* ESTRATÉGIA */
+    top: 80%; left: 55%;
+    font-size: 10vh;
+    animation-name: driftYScale;
+    animation-duration: 11s;
+    animation-delay: -3s;
+  }
+   .keyword:nth-child(5) { /* LEADS */
+    top: 20%; left: 75%;
+    font-size: 9vh;
+    animation-name: gentleDriftX, slowPulse;
+    animation-duration: 15s, 9s;
+    animation-delay: -6s, -2s;
+  }
+
+  /* Outras palavras (menos destaque, simulam profundidade) */
+  .keyword:nth-child(6) { /* WEB */
+    top: 5%; left: 50%;
+    font-size: 6vh; opacity: 0.6; font-weight: 400;
+    animation-name: driftYScale;
+    animation-duration: 13s;
+    animation-delay: -4s;
+  }
+  .keyword:nth-child(7) { /* ROI */
+    top: 30%; left: 10%;
+    font-size: 7vh; opacity: 0.7; font-weight: 400;
+    animation-name: driftXY;
+    animation-duration: 15s;
+    animation-delay: -7s;
+  }
+  .keyword:nth-child(8) { /* SOCIAL */
+    top: 55%; left: 80%;
+    font-size: 6.5vh; opacity: 0.65; font-weight: 400;
+    animation-name: slowPulse, gentleDriftX;
+    animation-duration: 8s, 18s;
+    animation-delay: -1.5s, -3s;
+  }
+  .keyword:nth-child(9) { /* FELGUEIRAS */
+    top: 90%; left: 30%;
+    font-size: 7vh; opacity: 0.75; font-weight: 700; /* Um pouco mais de destaque por ser local */
+    animation-name: driftXY;
+    animation-duration: 12s;
+    animation-delay: -0.8s;
+  }
+   .keyword:nth-child(10) { /* FUNIL */
+    top: 50%; left: 45%;
+    font-size: 6vh; opacity: 0.55; font-weight: 400;
+    animation-name: driftYScale;
+    animation-duration: 16s;
+    animation-delay: -8s;
+  }
+  .keyword:nth-child(11) { /* MÉTRICAS */
+    top: 10%; left: 85%;
+    font-size: 6.5vh; opacity: 0.7; font-weight: 400;
+    animation-name: slowPulse;
+    animation-duration: 9s;
+    animation-delay: -4s;
+  }
+   .keyword:nth-child(12) { /* UX/UI */
+    top: 75%; left: 5%;
+    font-size: 7vh; opacity: 0.6; font-weight: 400;
+    animation-name: gentleDriftX;
+    animation-duration: 20s;
+    animation-delay: -10s;
+  }
+
 </style>
 </head>
 <body>
 
-<div class="dynamic-keyword-container">
-  <div class="keyword-scroller">
-    <div class="keyword-group">
-      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
-      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
-      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
-      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
-      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
-      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
-      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
-      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
-      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
-      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
-    </div>
-    <div class="keyword-group">
-      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
-      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
-      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
-      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
-      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
-      <span>SEO</span> <span>ADS</span> <span>PPC</span> <span>ROI</span> <span>LEADS</span>
-      <span>UX/UI</span> <span>WEB</span> <span>SOCIAL</span> <span>CONTEÚDO</span> <span>COPY</span>
-      <span>E-MAIL</span> <span>FUNIL</span> <span>MÉTRICAS</span> <span>ESTRATÉGIA</span> <span>MARCA</span>
-      <span>VÍDEO</span> <span>MOBILE</span> <span>FELGUEIRAS</span> <span>DIGITAL</span> <span>ONLINE</span>
-      <span>CRESCER</span> <span>VENDER</span> <span>CLICKS</span> <span>VIEWS</span> <span>SEM</span>
-    </div>
+<div class="levitating-container">
+  <span class="keyword highlight-keyword">SEO</span>
+  <span class="keyword highlight-keyword">ADS</span>
+  <span class="keyword highlight-keyword">CONTEÚDO</span>
+  <span class="keyword highlight-keyword">ESTRATÉGIA</span>
+  <span class="keyword highlight-keyword">LEADS</span>
+
+  <span class="keyword">WEB</span>
+  <span class="keyword">ROI</span>
+  <span class="keyword">SOCIAL</span>
+  <span class="keyword">FELGUEIRAS</span>
+  <span class="keyword">FUNIL</span>
+  <span class="keyword">MÉTRICAS</span>
+  <span class="keyword">UX/UI</span>
   </div>
-</div>
 
 </body>
 </html>
