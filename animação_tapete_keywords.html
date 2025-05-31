@@ -96,10 +96,12 @@
     animation-timing-function: linear;
     animation-delay: -1.5s;
   }
-  .keyword:nth-child(4) { /* ESTRATÉGIA - highlight */
-    top: 70%; left: 70%;
+  .keyword:nth-child(4) { /* ESTRATÉGIA - highlight implícito pela classe .highlight-keyword no HTML */
+    top: 70%; 
+    left: 38%; /* ALTERADO de 70% para 38% (mais à esquerda) */
+    /* font-size: 3.3em; */ /* Mantido o tamanho da classe .highlight-keyword ou defina um específico */
     animation-name: driftYScale;
-    animation-duration: 7s; /* Mais rápido */
+    animation-duration: 7s; 
     animation-timing-function: linear;
     animation-delay: -3.3s;
   }
@@ -133,7 +135,7 @@
     animation-timing-function: ease-in-out, linear;
     animation-delay: -1.7s, -3.5s;
   }
-  .keyword:nth-child(9) { /* FELGUEIRAS */
+  .keyword:nth-child(9) { /* MARKETING */
     top: 85%; left: 30%; font-size: 3.1em; opacity: 0.85; font-weight: 700;
     animation-name: driftXY;
     animation-duration: 7s; /* Mais rápido */
@@ -154,10 +156,14 @@
     animation-timing-function: ease-in-out;
     animation-delay: -4.8s;
   }
-   .keyword:nth-child(12) { /* UX/UI */
-    top: 78%; left: 75%; font-size: 3.2em; opacity: 0.7; font-weight: 400;
+ .keyword:nth-child(12) { /* UX/UI */
+    top: 78%; 
+    left: 28%; /* ALTERADO de 75% para 28% (mais à esquerda) */
+    font-size: 3.2em; /* Mantido o tamanho da versão anterior */
+    opacity: 0.7; 
+    font-weight: 400;
     animation-name: gentleDriftX;
-    animation-duration: 11s; /* Mais rápido */
+    animation-duration: 11s; 
     animation-timing-function: linear;
     animation-delay: -10.5s;
   }
@@ -176,7 +182,7 @@
   <span class="keyword">WEB</span>
   <span class="keyword">ROI</span>
   <span class="keyword">SOCIAL</span>
-  <span class="keyword">FELGUEIRAS</span>
+  <span class="keyword">MARKETING</span>
   <span class="keyword">FUNIL</span>
   <span class="keyword">MÉTRICAS</span>
   <span class="keyword">UX/UI</span>
