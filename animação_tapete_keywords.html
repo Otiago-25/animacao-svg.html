@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação Dinâmica de Palavras-Chave (Texto Branco)</title>
+<title>Animação Dinâmica de Palavras-Chave Rápida</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
@@ -11,8 +11,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: transparent; /* Body do iframe continua transparente */
-    /* A cor do texto no body não importa muito aqui, pois será definida no span */
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,8 +27,7 @@
     position: relative;
     box-sizing: border-box;
     padding: 0;
-    /* FUNDO ESCURO PARA O CONTAINER DA ANIMAÇÃO */
-    background-color: #1A1A1A; /* Um cinza muito escuro. Pode alterar para #000000 (preto) ou outra cor escura. */
+    background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
   }
 
   .dynamic-keyword-container::before,
@@ -38,26 +36,37 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 75px; /* Largura do fade */
+    width: 75px; 
     z-index: 2;
   }
 
+  /*
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  LEMBRE-SE DE AJUSTAR AS CORES DO GRADIENTE PARA O FUNDO DA SUA PÁGINA CARRD
+  EXEMPLO ABAIXO ASSUME FUNDO BRANCO NA PÁGINA PARA O FADE.
+  SE O FUNDO DA PÁGINA FOR ESCURO (EX: #333333), use algo como:
+  background: linear-gradient(to right, rgba(51,51,51,1) 25%, rgba(51,51,51,0) 100%);
+  E O TEXTO DEVE SER BRANCO.
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  */
   .dynamic-keyword-container::before {
     left: 0;
-    /* FADE PARA O FUNDO ESCURO DO CONTAINER */
-    background: linear-gradient(to right, #1A1A1A 25%, rgba(26,26,26,0) 100%); /* (26,26,26) é o RGB de #1A1A1A */
+    /* Placeholder - MUDE ISTO para a cor do fundo da sua página! */
+    background: linear-gradient(to right, rgba(255,255,255,1) 25%, rgba(255,255,255,0) 100%);
   }
 
   .dynamic-keyword-container::after {
     right: 0;
-    background: linear-gradient(to left, #1A1A1A 25%, rgba(26,26,26,0) 100%); /* (26,26,26) é o RGB de #1A1A1A */
+    /* Placeholder - MUDE ISTO para a cor do fundo da sua página! */
+    background: linear-gradient(to left, rgba(255,255,255,1) 25%, rgba(255,255,255,0) 100%);
   }
 
   .keyword-scroller {
     display: flex;
     width: 200%;
     height: 100%;
-    animation: horizontal-scroll 240s linear infinite;
+    /* VELOCIDADE AJUSTADA AQUI */
+    animation: horizontal-scroll 80s linear infinite; /* <<<<<<< MUDANÇA AQUI */
     position: relative;
     z-index: 1;
   }
@@ -73,27 +82,26 @@
     box-sizing: border-box;
   }
 
-  .keyword-group + .keyword-group { /* Sobreposição */
-    margin-left: -60px; /* Ajuste este valor conforme necessário */
+  .keyword-group + .keyword-group {
+    margin-left: -60px;
   }
 
   .keyword-scroller span {
     font-weight: 400;
-    color: #FFFFFF; /* LETRAS A BRANCO */
+    color: #FFFFFF; /* Mantido texto branco - fundo da página Carrd DEVE ser escuro */
     padding: 4px 8px;
-    background-color: transparent; /* Sem fundo nas palavras */
+    background-color: transparent;
     white-space: nowrap;
     display: inline-block;
     font-size: 0.9em;
   }
 
-  /* Efeitos "desalinhados" (mantidos e importantes para o estilo) */
   .keyword-group span:nth-child(6n+1) { transform: translateY(-3px); font-weight: 600; font-size: 0.95em; }
-  .keyword-group span:nth-child(6n+2) { transform: translateY(2px); font-size: 0.85em; color: #E0E0E0; /* Ligeira variação de cor no branco */}
+  .keyword-group span:nth-child(6n+2) { transform: translateY(2px); font-size: 0.85em; color: #E0E0E0; }
   .keyword-group span:nth-child(6n+3) { transform: translateY(-1px); font-weight: 500; font-size: 1em; }
-  .keyword-group span:nth-child(6n+4) { transform: translateY(3px); font-size: 0.87em; color: #D8D8D8; /* Ligeira variação de cor no branco */}
+  .keyword-group span:nth-child(6n+4) { transform: translateY(3px); font-size: 0.87em; color: #D8D8D8; }
   .keyword-group span:nth-child(6n+5) { transform: translateY(-2px); font-weight: 700; font-size: 0.92em; }
-  .keyword-group span:nth-child(6n+6) { transform: translateY(1px); font-weight: 400; font-size: 0.82em; color: #E5E5E5; /* Ligeira variação de cor no branco */}
+  .keyword-group span:nth-child(6n+6) { transform: translateY(1px); font-weight: 400; font-size: 0.82em; color: #E5E5E5; }
 
   @keyframes horizontal-scroll {
     0% { transform: translateX(0%); }
