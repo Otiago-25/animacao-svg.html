@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Palavras-Chave Levitantes Contidas</title>
+<title>Palavras-Chave Levitantes Ajustadas e Rápidas</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
 
@@ -20,13 +20,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* font-size: 16px; /* Base para EM, se não definido, usa o default do browser */
   }
 
   .levitating-container {
     width: 560px;
     height: 691px;
     position: relative;
-    overflow: hidden; /* Isto é o que "corta" as palavras se saírem */
+    overflow: hidden;
     background-color: transparent; /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */
     box-sizing: border-box;
   }
@@ -36,123 +37,127 @@
     color: #FFFFFF;
     white-space: nowrap;
     text-transform: uppercase;
-    font-weight: 500;
-    opacity: 0.7;
+    font-weight: 500; /* Peso base */
+    font-size: 3.0em;  /* TAMANHO DE FONTE BASE AJUSTADO - pode afinar entre 2.5em e 4em */
+    opacity: 0.75; /* Opacidade base ligeiramente aumentada */
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
 
   .highlight-keyword {
-    font-weight: 900;
+    font-weight: 900; /* Destaque para palavras chave de marketing */
+    font-size: 3.3em; /* Ligeiramente maior que a base */
     opacity: 1;
     color: #FFFFFF;
     z-index: 10;
   }
 
-  /* KEYFRAMES COM AMPLITUDE DE MOVIMENTO REDUZIDA */
+  /* Keyframes com amplitude de movimento reduzida (mantidos da versão anterior) */
   @keyframes driftXY {
-    0% { transform: translate(-4px, -2px) scale(1); } /* Reduzido de (-12px, -8px) */
-    100% { transform: translate(4px, 2px) scale(1.02); } /* Reduzido de (12px, 8px) */
+    0% { transform: translate(-4px, -2px) scale(1); }
+    100% { transform: translate(4px, 2px) scale(1.01); } /* Escala ainda mais subtil */
   }
 
   @keyframes driftYScale {
-    0% { transform: translateY(3px) scale(0.95); opacity: 0.55; } /* Reduzido de 10px */
-    100% { transform: translateY(-3px) scale(1.05); opacity: 0.9;} /* Reduzido de -10px */
+    0% { transform: translateY(3px) scale(0.96); opacity: 0.6; }
+    100% { transform: translateY(-3px) scale(1.04); opacity: 0.9;}
   }
 
-  @keyframes slowPulse { /* Mantido como estava, pois é mais sobre escala/opacidade */
-    0% { opacity: 0.65; transform: scale(0.97); }
-    100% { opacity: 0.95; transform: scale(1.03); }
+  @keyframes slowPulse {
+    0% { opacity: 0.7; transform: scale(0.98); }
+    100% { opacity: 0.95; transform: scale(1.02); }
   }
   
   @keyframes gentleDriftX {
-    0% { transform: translateX(-6px); } /* Reduzido de -15px */
-    100% { transform: translateX(6px); } /* Reduzido de 15px */
+    0% { transform: translateX(-6px); }
+    100% { transform: translateX(6px); }
   }
 
-  /* ESTILOS E POSIÇÕES INDIVIDUAIS - Fontes e Durações da última versão */
-  .keyword:nth-child(1) { /* SEO */
-    top: 12%; left: 18%; font-size: 4.2em;
+  /* ESTILOS E POSIÇÕES INDIVIDUAIS - FONTES AJUSTADAS, DURAÇÕES MAIS RÁPIDAS */
+  .keyword:nth-child(1) { /* SEO - highlight implícito pela classe .highlight-keyword */
+    top: 15%; left: 20%; /* Posições mais centrais */
+    /* font-size já vem de .highlight-keyword ou .keyword */
     animation-name: driftXY, slowPulse;
-    animation-duration: 9s, 6s;
+    animation-duration: 7s, 5s; /* Mais rápido */
     animation-timing-function: linear, ease-in-out;
     animation-delay: -2.5s, -0.5s;
   }
-  .keyword:nth-child(2) { /* ADS */
-    top: 35%; left: 62%; font-size: 4.5em;
+  .keyword:nth-child(2) { /* ADS - highlight */
+    top: 30%; left: 65%;
     animation-name: driftYScale, gentleDriftX;
-    animation-duration: 8s, 11s;
+    animation-duration: 6s, 9s; /* Mais rápido */
     animation-timing-function: linear, linear;
     animation-delay: -5.2s, -1.8s;
   }
-  .keyword:nth-child(3) { /* CONTEÚDO */
-    top: 55%; left: 12%; font-size: 4.0em;
+  .keyword:nth-child(3) { /* CONTEÚDO - highlight */
+    top: 50%; left: 15%;
     animation-name: driftXY;
-    animation-duration: 11s;
+    animation-duration: 9s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -1.5s;
   }
-  .keyword:nth-child(4) { /* ESTRATÉGIA */
-    top: 75%; left: 60%; font-size: 4.1em;
+  .keyword:nth-child(4) { /* ESTRATÉGIA - highlight */
+    top: 70%; left: 70%;
     animation-name: driftYScale;
-    animation-duration: 9s;
+    animation-duration: 7s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -3.3s;
   }
-   .keyword:nth-child(5) { /* LEADS */
-    top: 8%; left: 70%; font-size: 3.8em;
+   .keyword:nth-child(5) { /* LEADS - highlight */
+    top: 8%; left: 60%;
     animation-name: gentleDriftX, slowPulse;
-    animation-duration: 12s, 7s;
+    animation-duration: 10s, 6s; /* Mais rápido */
     animation-timing-function: linear, ease-in-out;
     animation-delay: -6.8s, -2.2s;
   }
 
+  /* Outras palavras */
   .keyword:nth-child(6) { /* WEB */
-    top: 22%; left: 42%; font-size: 3.0em; opacity: 0.65; font-weight: 400;
+    top: 25%; left: 35%; font-size: 2.8em; opacity: 0.7; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 10s;
+    animation-duration: 8s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -4.5s;
   }
   .keyword:nth-child(7) { /* ROI */
-    top: 42%; left: 78%; font-size: 3.3em; opacity: 0.75; font-weight: 400;
+    top: 45%; left: 75%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: driftXY;
-    animation-duration: 12s;
+    animation-duration: 10s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -7.2s;
   }
   .keyword:nth-child(8) { /* SOCIAL */
-    top: 62%; left: 30%; font-size: 3.2em; opacity: 0.7; font-weight: 400;
+    top: 65%; left: 25%; font-size: 2.8em; opacity: 0.75; font-weight: 400;
     animation-name: slowPulse, gentleDriftX;
-    animation-duration: 6s, 13s;
+    animation-duration: 5s, 10s; /* Mais rápido */
     animation-timing-function: ease-in-out, linear;
     animation-delay: -1.7s, -3.5s;
   }
   .keyword:nth-child(9) { /* FELGUEIRAS */
-    top: 88%; left: 20%; font-size: 3.5em; opacity: 0.8; font-weight: 700;
+    top: 85%; left: 30%; font-size: 3.1em; opacity: 0.85; font-weight: 700;
     animation-name: driftXY;
-    animation-duration: 9s;
+    animation-duration: 7s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -1s;
   }
    .keyword:nth-child(10) { /* FUNIL */
-    top: 10%; left: 55%; font-size: 3.1em; opacity: 0.6; font-weight: 400;
+    top: 12%; left: 45%; font-size: 2.7em; opacity: 0.65; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 12s;
+    animation-duration: 10s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -8.3s;
   }
   .keyword:nth-child(11) { /* MÉTRICAS */
-    top: 30%; left: 8%; font-size: 3.4em; opacity: 0.75; font-weight: 400;
+    top: 38%; left: 10%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: slowPulse;
-    animation-duration: 7s;
+    animation-duration: 6s; /* Mais rápido */
     animation-timing-function: ease-in-out;
     animation-delay: -4.8s;
   }
    .keyword:nth-child(12) { /* UX/UI */
-    top: 70%; left: 80%; font-size: 3.6em; opacity: 0.65; font-weight: 400;
+    top: 78%; left: 75%; font-size: 3.2em; opacity: 0.7; font-weight: 400;
     animation-name: gentleDriftX;
-    animation-duration: 14s;
+    animation-duration: 11s; /* Mais rápido */
     animation-timing-function: linear;
     animation-delay: -10.5s;
   }
