@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação Dinâmica de Palavras-Chave Rápida</title>
+<title>Animação de Palavras-Chave (Blocos Separados, Sem Fade)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap');
 
   body {
     margin: 0;
@@ -21,54 +21,27 @@
 
   .dynamic-keyword-container {
     width: 100%;
-    /* max-width: 400px; */
-    height: 210px;
-    overflow: hidden;
+    /* max-width: 450px; */
+    height: 230px; /* ALTURA AJUSTADA PARA ~3-4 LINHAS DE TEXTO GRANDE */
+    overflow: hidden; /* Continua essencial */
     position: relative;
     box-sizing: border-box;
     padding: 0;
     background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
+     /* LEMBRE-SE: Texto branco implica que o fundo da sua página Carrd DEVE ser escuro */
   }
 
-  .dynamic-keyword-container::before,
-  .dynamic-keyword-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 75px; 
-    z-index: 2;
-  }
-
-  /*
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  LEMBRE-SE DE AJUSTAR AS CORES DO GRADIENTE PARA O FUNDO DA SUA PÁGINA CARRD
-  EXEMPLO ABAIXO ASSUME FUNDO BRANCO NA PÁGINA PARA O FADE.
-  SE O FUNDO DA PÁGINA FOR ESCURO (EX: #333333), use algo como:
-  background: linear-gradient(to right, rgba(51,51,51,1) 25%, rgba(51,51,51,0) 100%);
-  E O TEXTO DEVE SER BRANCO.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  */
-  .dynamic-keyword-container::before {
-    left: 0;
-    /* Placeholder - MUDE ISTO para a cor do fundo da sua página! */
-    background: linear-gradient(to right, rgba(255,255,255,1) 25%, rgba(255,255,255,0) 100%);
-  }
-
-  .dynamic-keyword-container::after {
-    right: 0;
-    /* Placeholder - MUDE ISTO para a cor do fundo da sua página! */
-    background: linear-gradient(to left, rgba(255,255,255,1) 25%, rgba(255,255,255,0) 100%);
-  }
+  /* GRADIENTE LATERAL REMOVIDO */
+  /* .dynamic-keyword-container::before,
+  .dynamic-keyword-container::after { ... } */
 
   .keyword-scroller {
     display: flex;
     width: 200%;
     height: 100%;
-    /* VELOCIDADE AJUSTADA AQUI */
-    animation: horizontal-scroll 80s linear infinite; /* <<<<<<< MUDANÇA AQUI */
+    animation: horizontal-scroll 90s linear infinite; /* VELOCIDADE - pode ajustar */
     position: relative;
-    z-index: 1;
+    /* z-index não é mais tão crítico sem o fade por cima */
   }
 
   .keyword-group {
@@ -77,31 +50,48 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    gap: 8px 12px;
-    padding: 0 5px;
+    gap: 0.3em 0.5em;
+    padding: 0 0.2em; /* Padding pequeno para as palavras não colarem nas bordas do grupo */
     box-sizing: border-box;
   }
 
+  /* REMOVIDA A SOBREPOSIÇÃO - BLOCOS APENAS ADJACENTES */
   .keyword-group + .keyword-group {
-    margin-left: -60px;
+    margin-left: 0; /* Sem margem negativa, sem sobreposição */
   }
 
   .keyword-scroller span {
-    font-weight: 400;
-    color: #FFFFFF; /* Mantido texto branco - fundo da página Carrd DEVE ser escuro */
-    padding: 4px 8px;
+    font-weight: 500;
+    color: #FFFFFF; /* LETRAS A BRANCO */
+    padding: 0.1em 0.25em;
     background-color: transparent;
     white-space: nowrap;
     display: inline-block;
-    font-size: 0.9em;
+    font-size: 2.6em; /* TAMANHO DA FONTE BEM GRANDE */
+    line-height: 1.3;
   }
 
-  .keyword-group span:nth-child(6n+1) { transform: translateY(-3px); font-weight: 600; font-size: 0.95em; }
-  .keyword-group span:nth-child(6n+2) { transform: translateY(2px); font-size: 0.85em; color: #E0E0E0; }
-  .keyword-group span:nth-child(6n+3) { transform: translateY(-1px); font-weight: 500; font-size: 1em; }
-  .keyword-group span:nth-child(6n+4) { transform: translateY(3px); font-size: 0.87em; color: #D8D8D8; }
-  .keyword-group span:nth-child(6n+5) { transform: translateY(-2px); font-weight: 700; font-size: 0.92em; }
-  .keyword-group span:nth-child(6n+6) { transform: translateY(1px); font-weight: 400; font-size: 0.82em; color: #E5E5E5; }
+  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) */
+  .keyword-group span:nth-child(4n+1) {
+    transform: translateY(-0.08em);
+    font-weight: 700;
+    font-size: 2.7em;
+  }
+  .keyword-group span:nth-child(4n+2) {
+    transform: translateY(0.05em);
+    font-size: 2.5em;
+    color: #E8E8E8;
+  }
+  .keyword-group span:nth-child(4n+3) {
+    transform: translateY(-0.03em);
+    font-weight: 800;
+    font-size: 2.65em;
+  }
+  .keyword-group span:nth-child(4n+4) {
+    transform: translateY(0.06em);
+    font-size: 2.45em;
+    color: #F0F0F0;
+  }
 
   @keyframes horizontal-scroll {
     0% { transform: translateX(0%); }
@@ -114,52 +104,30 @@
 <div class="dynamic-keyword-container">
   <div class="keyword-scroller">
     <div class="keyword-group">
-      <span>Marketing Digital Abrangente</span> <span>Criação de Conteúdo Impactante</span> <span>Fotografia Profissional HD</span> <span>Vídeos Criativos e Dinâmicos</span> <span>Gestão de Redes Sociais Expert</span>
-      <span>SEO Local Estratégico Felgueiras</span> <span>Publicidade Online Otimizada</span> <span>Google Ads & Meta Ads</span>
-      <span>Design Gráfico Inovador</span> <span>Identidade Visual Forte</span> <span>Branding e Rebranding</span>
-      <span>Estratégia de Marketing Digital</span> <span>Consultoria Personalizada</span> <span>Resultados Mensuráveis</span>
-      <span>Performance e Crescimento</span> <span>Inovação Constante</span> <span>Tecnologia de Ponta</span>
-      <span>Soluções Digitais Completas</span> <span>O Seu Parceiro de Sucesso</span> <span>Engajamento de Audiência</span>
-      <span>Aumento de Visibilidade</span> <span>Conversão de Leads</span> <span>Funil de Vendas Digital</span>
-      <span>Copywriting Persuasivo</span> <span>Storytelling de Marca</span> <span>UX/UI Design Intuitivo</span>
-      <span>E-commerce e Lojas Online</span> <span>Marketing de Influência</span> <span>Análise de Dados e Métricas</span>
-      <span>Relatórios de Desempenho</span> <span>Automação de Marketing</span> <span>Email Marketing Eficaz</span>
-      <span>Conteúdo para Blog SEO</span> <span>Otimização de Websites</span> <span>Workshops e Formação</span>
-      <span>Presença Digital Consistente</span> <span>Reputação Online Gerida</span> <span>Design de Landing Pages</span>
-      <span>Campanhas Sazonais Criativas</span> <span>Tráfego Qualificado</span>
-      <span>Felgueiras Digital</span> <span>Negócios Locais Online</span> <span>Transformação Digital Ágil</span>
-      <span>Consultoria SEO Avançada</span> <span>Marketing de Performance</span> <span>Geração de Leads B2B</span>
-      <span>Conteúdo Interativo</span> <span>Podcasts e Webinars</span> <span>Design Responsivo Total</span>
-      <span>Experiência do Utilizador Otimizada</span> <span>Publicidade Programática</span> <span>Felgueiras Criativa</span>
-      <span>Suporte Contínuo</span> <span>Vídeo Marketing</span> <span>SEO On-Page & Off-Page</span>
-      <span>Marketing Digital Abrangente</span> <span>Criação de Conteúdo Impactante</span> <span>Websites Modernos e Responsivos</span>
-      <span>Fotografia Profissional HD</span> <span>Vídeos Criativos e Dinâmicos</span> <span>Gestão de Redes Sociais Expert</span>
-      <span>SEO Local Estratégico Felgueiras</span> <span>Publicidade Online Otimizada</span> <span>Google Ads & Meta Ads</span>
-      <span>Suporte Contínuo</span> <span>Vídeo Marketing</span> <span>SEO On-Page & Off-Page</span>
+      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
+      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
+      <span>SEO FELGUEIRAS</span> <span>ADS ONLINE</span> <span>DESIGN</span>
+      <span>ESTRATÉGIA</span> <span>RESULTADOS</span> <span>INOVAÇÃO</span>
+      <span>CONSULTORIA</span> <span>SUA MARCA</span> <span>ENGAJAMENTO</span>
+      <span>VISIBILIDADE</span> <span>PARCERIA</span> <span>SUCESSO</span> <span>BRANDING</span>
+      <span>UX/UI</span> <span>COPYWRITING</span> <span>STORYTELLING</span> <span>PERFORMANCE</span>
+      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
+      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
+      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
+      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
     </div>
     <div class="keyword-group">
-      <span>Marketing Digital Abrangente</span> <span>Criação de Conteúdo Impactante</span> <span>Fotografia Profissional HD</span> <span>Vídeos Criativos e Dinâmicos</span> <span>Gestão de Redes Sociais Expert</span>
-      <span>SEO Local Estratégico Felgueiras</span> <span>Publicidade Online Otimizada</span> <span>Google Ads & Meta Ads</span>
-      <span>Design Gráfico Inovador</span> <span>Identidade Visual Forte</span> <span>Branding e Rebranding</span>
-      <span>Estratégia de Marketing Digital</span> <span>Consultoria Personalizada</span> <span>Resultados Mensuráveis</span>
-      <span>Performance e Crescimento</span> <span>Inovação Constante</span> <span>Tecnologia de Ponta</span>
-      <span>Soluções Digitais Completas</span> <span>O Seu Parceiro de Sucesso</span> <span>Engajamento de Audiência</span>
-      <span>Aumento de Visibilidade</span> <span>Conversão de Leads</span> <span>Funil de Vendas Digital</span>
-      <span>Copywriting Persuasivo</span> <span>Storytelling de Marca</span> <span>UX/UI Design Intuitivo</span>
-      <span>E-commerce e Lojas Online</span> <span>Marketing de Influência</span> <span>Análise de Dados e Métricas</span>
-      <span>Relatórios de Desempenho</span> <span>Automação de Marketing</span> <span>Email Marketing Eficaz</span>
-      <span>Conteúdo para Blog SEO</span> <span>Otimização de Websites</span> <span>Workshops e Formação</span>
-      <span>Presença Digital Consistente</span> <span>Reputação Online Gerida</span> <span>Design de Landing Pages</span>
-      <span>Campanhas Sazonais Criativas</span> <span>Tráfego Qualificado</span> 
-      <span>Felgueiras Digital</span> <span>Negócios Locais Online</span> <span>Transformação Digital Ágil</span>
-      <span>Consultoria SEO Avançada</span> <span>Marketing de Performance</span> <span>Geração de Leads B2B</span>
-      <span>Conteúdo Interativo</span> <span>Podcasts e Webinars</span> <span>Design Responsivo Total</span>
-      <span>Experiência do Utilizador Otimizada</span> <span>Publicidade Programática</span> <span>Felgueiras Criativa</span>
-      <span>Suporte Contínuo</span> <span>Vídeo Marketing</span> <span>SEO On-Page & Off-Page</span>
-      <span>Marketing Digital Abrangente</span> <span>Criação de Conteúdo Impactante</span> <span>Websites Modernos e Responsivos</span>
-      <span>Fotografia Profissional HD</span> <span>Vídeos Criativos e Dinâmicos</span> <span>Gestão de Redes Sociais Expert</span>
-      <span>SEO Local Estratégico Felgueiras</span> <span>Publicidade Online Otimizada</span> <span>Google Ads & Meta Ads</span>
-      <span>Suporte Contínuo</span> <span>Vídeo Marketing</span> <span>SEO On-Page & Off-Page</span>
+      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
+      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
+      <span>SEO FELGUEIRAS</span> <span>ADS ONLINE</span> <span>DESIGN</span>
+      <span>ESTRATÉGIA</span> <span>RESULTADOS</span> <span>INOVAÇÃO</span>
+      <span>CONSULTORIA</span> <span>SUA MARCA</span> <span>ENGAJAMENTO</span>
+      <span>VISIBILIDADE</span> <span>PARCERIA</span> <span>SUCESSO</span> <span>BRANDING</span>
+      <span>UX/UI</span> <span>COPYWRITING</span> <span>STORYTELLING</span> <span>PERFORMANCE</span>
+      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
+      <span>MARKETING DIGITAL</span> <span>CONTEÚDO</span> <span>WEBSITES</span>
+      <span>FOTOGRAFIA</span> <span>VÍDEOS HD</span> <span>REDES SOCIAIS</span>
+      <span>CRIATIVIDADE</span> <span>IMPACTO</span> <span>SOLUÇÕES</span> <span>CRESCIMENTO</span>
     </div>
   </div>
 </div>
