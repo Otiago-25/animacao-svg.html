@@ -3,31 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animação de Palavras-Chave (500x500px, Texto Gigante)</title>
+<title>Animação de Palavras-Chave Responsiva</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap'); /* Pesos bem fortes */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
 
-  body {
+  html, body { /* Garantir que o html e body do iframe ocupam o espaço */
+    height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Evitar scrollbars no próprio iframe se o conteúdo exceder */
+  }
+
+  body {
     font-family: 'Montserrat', sans-serif;
-    background-color: transparent;
+    background-color: transparent; /* Fundo do body do iframe transparente */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
   }
 
   .dynamic-keyword-container {
-    width: 500px;  /* LARGURA FIXA */
-    height: 500px; /* ALTURA FIXA */
+    width: 100%;  /* OCUPA A LARGURA TOTAL DO BLOCO CARRD */
+    height: 100%; /* OCUPA A ALTURA TOTAL DO BLOCO CARRD (o bloco Carrd precisa ter uma altura definida) */
+                  /* Alternativa: height: 40vh; ou outra unidade que funcione para si */
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
     padding: 0;
     background-color: transparent; /* FUNDO DO CONTAINER TRANSPARENTE */
-                                  /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */
   }
 
   /* GRADIENTE LATERAL REMOVIDO */
@@ -46,9 +49,9 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    /* Gap em EM para escalar com o font-size dos spans, valores pequenos devido ao tamanho da fonte */
+    /* Gap em EM para escalar com o font-size (que será em vh) */
     gap: 0.1em 0.15em; /* (vertical e horizontal) */
-    padding: 0 0.05em; /* Padding mínimo */
+    padding: 0 0.05em;
     box-sizing: border-box;
   }
 
@@ -57,36 +60,40 @@
   }
 
   .keyword-scroller span {
-    font-weight: 700; /* Peso base mais forte */
+    font-weight: 700;
     color: #FFFFFF; /* LETRAS A BRANCO */
-    padding: 0.02em 0.05em; /* Padding individual mínimo */
+    padding: 0.02em 0.05em;
     background-color: transparent;
     white-space: nowrap;
     display: inline-block;
-    font-size: 5.8em; /* TAMANHO DA FONTE GIGANTE - ajuste conforme necessário! */
-    line-height: 1.15; /* Linha um pouco mais apertada para texto gigante */
-    text-transform: uppercase; /* Mantido para impacto */
+    /* TAMANHO DA FONTE RESPONSIVO COM VH (Viewport Height) */
+    /* 20vh significa que a fonte terá 20% da altura do iframe/viewport. */
+    /* Se quer 3-4 linhas, e line-height é ~1.2, então font-size ~ (100vh / 4 linhas / 1.2) = ~20vh */
+    font-size: 22vh; /* Ajuste este valor para o tamanho desejado e número de linhas! */
+    line-height: 1.1; /* Linha apertada para texto gigante e responsivo */
+    text-transform: uppercase;
   }
 
-  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) COM FONTES GIGANTES */
+  /* EFEITOS "DESALINHADOS" (SEM ROTAÇÃO) COM FONTES RESPONSIVAS */
+  /* As variações de font-size também usam VH para consistência */
   .keyword-group span:nth-child(4n+1) {
-    transform: translateY(-0.05em);
-    font-weight: 900; /* Super grosso */
-    font-size: 6.0em;   /* Variação de tamanho */
+    transform: translateY(-0.04em); /* Deslocamento em EM, relativo ao font-size do span */
+    font-weight: 900;
+    font-size: 23vh;   /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+2) {
     transform: translateY(0.03em);
-    font-size: 5.6em; /* Variação de tamanho */
+    font-size: 21vh; /* Variação de tamanho */
     color: #F0F0F0;
   }
   .keyword-group span:nth-child(4n+3) {
     transform: translateY(-0.02em);
     font-weight: 800;
-    font-size: 5.9em; /* Variação de tamanho */
+    font-size: 22.5vh; /* Variação de tamanho */
   }
   .keyword-group span:nth-child(4n+4) {
     transform: translateY(0.04em);
-    font-size: 5.7em; /* Variação de tamanho */
+    font-size: 20.5vh; /* Variação de tamanho */
     color: #EAEAEA;
   }
 
