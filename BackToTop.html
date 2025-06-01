@@ -1,115 +1,24 @@
-<a href="#" id="backToTopBtn" aria-label="Voltar ao topo" title="Voltar ao topo">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"/>
-  </svg>
-</a>
+window.addEventListener('DOMContentLoaded', (event) => {
+  let backToTopButton = document.getElementById("backToTopBtn");
+  // console.log("Botão BackToTop encontrado:", backToTopButton);
 
-<style>
-  /* Garante scroll suave na página inteira, se o Carrd não o fizer */
-  html {
-    scroll-behavior: smooth !important;
-  }
+  if (backToTopButton) {
+    let scrollThreshold = 200; 
 
-  #backToTopBtn {
-    position: fixed; /* Posição fixa relativamente à janela de visualização */
-    bottom: 25px;
-    right: 25px;
-    z-index: 9999; /* Garante que fica por cima de outros elementos */
-    
-    border: none;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.6); /* Cor de fundo semi-transparente */
-    color: white; /* Cor do ícone */
-    cursor: pointer;
-    
-    width: 50px;  /* Largura do botão */
-    height: 50px; /* Altura do botão */
-    border-radius: 50%; /* Botão circular */
-    
-    display: none; /* Começa escondido */
-    align-items: center; /* Para centrar o SVG */
-    justify-content: center; /* Para centrar o SVG */
-    
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra subtil */
-    
-    /* Transições para aparecer/desaparecer suavemente */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px); /* Efeito subtil de surgir de baixo */
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.2s ease;
-  }
-
-  #backToTopBtn svg {
-    width: 28px; /* Tamanho do ícone SVG */
-    height: 28px;
-  }
-
-  #backToTopBtn:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo mais escura ao passar o rato */
-  }
-
-  /* Classe para mostrar o botão */
-  #backToTopBtn.show {
-    display: flex; /* Ou 'flex' se usou align/justify-items */
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0); /* Volta à posição original ao surgir */
-  }
-
-  /* Ajustes para ecrãs menores (Responsividade) */
-  @media (max-width: 768px) {
-    #backToTopBtn {
-      bottom: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-    }
-    #backToTopBtn svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-</style>
-
-<script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    let backToTopButton = document.getElementById("backToTopBtn");
-    // console.log("Botão BackToTop encontrado:", backToTopButton); // Descomente para depurar
-
-    if (backToTopButton) {
-      let scrollThreshold = 200; 
-
-      function toggleBackToTopButton() {
-        // Certifique-se que o botão ainda existe, caso seja removido dinamicamente (pouco provável aqui)
-        if (!document.getElementById("backToTopBtn")) return; 
-
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-          backToTopButton.classList.add("show");
-        } else {
-          backToTopButton.classList.remove("show");
-        }
+    function toggleBackToTopButton() {
+      if (!document.getElementById("backToTopBtn")) return; 
+      if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
       }
-
-      window.addEventListener('scroll', toggleBackToTopButton);
-      toggleBackToTopButton(); // Verifica o estado inicial ao carregar
-
-      backToTopButton.addEventListener('click', function(e) {
-        // console.log("Clique no botão BackToTop!"); // Descomente para depurar
-
-        e.preventDefault();  // Previne o comportamento padrão do link
-        e.stopPropagation(); // Para a propagação do evento (boa prática em alguns casos)
-
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-
-        return false; // Em alguns browsers/cenários mais antigos, isto também ajuda a prevenir a ação padrão
-      });
-
-    } else {
-      // console.error("Elemento do botão BackToTop não encontrado no DOM!"); // Descomente para depurar
     }
-  });
-</script>
+
+    window.addEventListener('scroll', toggleBackToTopButton);
+    toggleBackToTopButton(); // Verifica o estado inicial ao carregar
+
+    // NENHUM OUVINTE DE CLIQUE NECESSÁRIO AQUI SE O <A HREF> FUNCIONAR BEM
+  } else {
+    // console.error("Elemento do botão BackToTop não encontrado no DOM!");
+  }
+});
