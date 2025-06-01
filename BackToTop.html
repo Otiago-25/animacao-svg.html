@@ -1,24 +1,102 @@
-window.addEventListener('DOMContentLoaded', (event) => {
-  let backToTopButton = document.getElementById("backToTopBtn");
-  // console.log("Botão BackToTop encontrado:", backToTopButton);
+<a href="#seuHeaderID" id="backToTopBtn" aria-label="Voltar ao topo" title="Voltar ao topo">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"/>
+  </svg>
+</a>
 
-  if (backToTopButton) {
-    let scrollThreshold = 200; 
-
-    function toggleBackToTopButton() {
-      if (!document.getElementById("backToTopBtn")) return; 
-      if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-        backToTopButton.classList.add("show");
-      } else {
-        backToTopButton.classList.remove("show");
-      }
-    }
-
-    window.addEventListener('scroll', toggleBackToTopButton);
-    toggleBackToTopButton(); // Verifica o estado inicial ao carregar
-
-    // NENHUM OUVINTE DE CLIQUE NECESSÁRIO AQUI SE O <A HREF> FUNCIONAR BEM
-  } else {
-    // console.error("Elemento do botão BackToTop não encontrado no DOM!");
+<style>
+  /* Garante scroll suave na página inteira */
+  html {
+    scroll-behavior: smooth !important;
   }
-});
+
+  #backToTopBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente escuro */
+    color: white; /* Ícone branco */
+    cursor: pointer;
+    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular */
+    
+    display: none; /* Começa escondido, controlado pela classe .show e JS */
+    align-items: center;
+    justify-content: center;
+    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.2s ease;
+  }
+
+  #backToTopBtn svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  #backToTopBtn:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Mais escuro no hover */
+  }
+
+  #backToTopBtn.show {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Ajustes para ecrãs menores */
+  @media (max-width: 768px) {
+    #backToTopBtn {
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+    }
+    #backToTopBtn svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    let backToTopButton = document.getElementById("backToTopBtn");
+    
+    if (backToTopButton) {
+      let scrollThreshold = 200; // Mostrar botão após 200px de scroll
+
+      function toggleBackToTopButton() {
+        if (!document.getElementById("backToTopBtn")) return; 
+
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+      }
+
+      window.addEventListener('scroll', toggleBackToTopButton);
+      toggleBackToTopButton(); // Verifica o estado inicial ao carregar
+
+      // O manipulador de clique para o scroll foi removido.
+      // O link <a href="#header"> e o CSS "scroll-behavior: smooth;"
+      // tratarão do scroll suave para a secção do header.
+      // Se o seu link não tiver um ID de header válido, ele simplesmente irá para href="#" (topo).
+
+    } else {
+      // console.error("Elemento do botão BackToTop não encontrado no DOM!"); // Para depuração
+    }
+  });
+</script>
