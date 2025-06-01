@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Palavras-Chave Levitantes Ajustadas e Rápidas</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
 
@@ -20,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-size: 16px; /* Base para EM, se não definido, usa o default do browser */
+    /* font-size: 16px; */
   }
 
   .levitating-container {
@@ -37,25 +31,24 @@
     color: #FFFFFF;
     white-space: nowrap;
     text-transform: uppercase;
-    font-weight: 500; /* Peso base */
-    font-size: 3.0em;  /* TAMANHO DE FONTE BASE AJUSTADO - pode afinar entre 2.5em e 4em */
-    opacity: 0.75; /* Opacidade base ligeiramente aumentada */
+    font-weight: 500; 
+    font-size: 3.0em;  
+    opacity: 0.75; 
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
 
   .highlight-keyword {
-    font-weight: 900; /* Destaque para palavras chave de marketing */
-    font-size: 3.3em; /* Ligeiramente maior que a base */
+    font-weight: 900; 
+    font-size: 3.3em; 
     opacity: 1;
     color: #FFFFFF;
     z-index: 10;
   }
 
-  /* Keyframes com amplitude de movimento reduzida (mantidos da versão anterior) */
   @keyframes driftXY {
     0% { transform: translate(-4px, -2px) scale(1); }
-    100% { transform: translate(4px, 2px) scale(1.01); } /* Escala ainda mais subtil */
+    100% { transform: translate(4px, 2px) scale(1.01); }
   }
 
   @keyframes driftYScale {
@@ -73,103 +66,99 @@
     100% { transform: translateX(6px); }
   }
 
-  /* ESTILOS E POSIÇÕES INDIVIDUAIS - FONTES AJUSTADAS, DURAÇÕES MAIS RÁPIDAS */
-  .keyword:nth-child(1) { /* SEO - highlight implícito pela classe .highlight-keyword */
-    top: 15%; left: 20%; /* Posições mais centrais */
-    /* font-size já vem de .highlight-keyword ou .keyword */
+  /* DURAÇÕES ATUALIZADAS PARA MAIOR VELOCIDADE */
+  .keyword:nth-child(1) { /* SEO */
+    top: 15%; left: 20%;
     animation-name: driftXY, slowPulse;
-    animation-duration: 7s, 5s; /* Mais rápido */
+    animation-duration: 5s, 3.5s; /* Acelerado */
     animation-timing-function: linear, ease-in-out;
     animation-delay: -2.5s, -0.5s;
   }
-  .keyword:nth-child(2) { /* ADS - highlight */
+  .keyword:nth-child(2) { /* ADS */
     top: 30%; left: 65%;
     animation-name: driftYScale, gentleDriftX;
-    animation-duration: 6s, 9s; /* Mais rápido */
+    animation-duration: 4s, 7s; /* Acelerado */
     animation-timing-function: linear, linear;
     animation-delay: -5.2s, -1.8s;
   }
-  .keyword:nth-child(3) { /* CONTEÚDO - highlight */
+  .keyword:nth-child(3) { /* CONTEÚDO */
     top: 50%; left: 15%;
     animation-name: driftXY;
-    animation-duration: 9s; /* Mais rápido */
+    animation-duration: 6s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -1.5s;
   }
-  .keyword:nth-child(4) { /* ESTRATÉGIA - highlight implícito pela classe .highlight-keyword no HTML */
+  .keyword:nth-child(4) { /* ESTRATÉGIA */
     top: 70%; 
-    left: 38%; /* ALTERADO de 70% para 38% (mais à esquerda) */
-    /* font-size: 3.3em; */ /* Mantido o tamanho da classe .highlight-keyword ou defina um específico */
+    left: 38%; 
     animation-name: driftYScale;
-    animation-duration: 7s; 
+    animation-duration: 5s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -3.3s;
   }
-   .keyword:nth-child(5) { /* LEADS - highlight */
+   .keyword:nth-child(5) { /* LEADS */
     top: 8%; left: 60%;
     animation-name: gentleDriftX, slowPulse;
-    animation-duration: 10s, 6s; /* Mais rápido */
+    animation-duration: 7s, 4s; /* Acelerado */
     animation-timing-function: linear, ease-in-out;
     animation-delay: -6.8s, -2.2s;
   }
 
-  /* Outras palavras */
   .keyword:nth-child(6) { /* WEB */
     top: 25%; left: 35%; font-size: 2.8em; opacity: 0.7; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 8s; /* Mais rápido */
+    animation-duration: 6s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -4.5s;
   }
   .keyword:nth-child(7) { /* ROI */
     top: 45%; left: 75%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: driftXY;
-    animation-duration: 10s; /* Mais rápido */
+    animation-duration: 7s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -7.2s;
   }
   .keyword:nth-child(8) { /* SOCIAL */
     top: 65%; left: 25%; font-size: 2.8em; opacity: 0.75; font-weight: 400;
     animation-name: slowPulse, gentleDriftX;
-    animation-duration: 5s, 10s; /* Mais rápido */
+    animation-duration: 4s, 7s; /* Acelerado */
     animation-timing-function: ease-in-out, linear;
     animation-delay: -1.7s, -3.5s;
   }
   .keyword:nth-child(9) { /* MARKETING */
     top: 85%; left: 30%; font-size: 3.1em; opacity: 0.85; font-weight: 700;
     animation-name: driftXY;
-    animation-duration: 7s; /* Mais rápido */
+    animation-duration: 5s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -1s;
   }
    .keyword:nth-child(10) { /* FUNIL */
     top: 12%; left: 45%; font-size: 2.7em; opacity: 0.65; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 10s; /* Mais rápido */
+    animation-duration: 8s; /* Acelerado (mas mantido um pouco mais longo para variedade) */
     animation-timing-function: linear;
     animation-delay: -8.3s;
   }
   .keyword:nth-child(11) { /* MÉTRICAS */
     top: 38%; left: 10%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: slowPulse;
-    animation-duration: 6s; /* Mais rápido */
+    animation-duration: 4s; /* Acelerado */
     animation-timing-function: ease-in-out;
     animation-delay: -4.8s;
   }
  .keyword:nth-child(12) { /* UX/UI */
     top: 78%; 
-    left: 28%; /* ALTERADO de 75% para 28% (mais à esquerda) */
-    font-size: 3.2em; /* Mantido o tamanho da versão anterior */
+    left: 28%; 
+    font-size: 3.2em; 
     opacity: 0.7; 
     font-weight: 400;
     animation-name: gentleDriftX;
-    animation-duration: 11s; 
+    animation-duration: 8s; /* Acelerado */
     animation-timing-function: linear;
     animation-delay: -10.5s;
   }
-
 </style>
-</head>
+
 <body>
 
 <div class="levitating-container">
@@ -189,4 +178,3 @@
   </div>
 
 </body>
-</html>
