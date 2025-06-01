@@ -73,39 +73,43 @@
 </style>
 
 <script>
-  // Espera que o DOM esteja completamente carregado para executar o script
   window.addEventListener('DOMContentLoaded', (event) => {
     let backToTopButton = document.getElementById("backToTopBtn");
-    
-    // Distância de scroll para o botão aparecer (em pixels)
-    let scrollThreshold = 200; 
+    // console.log("Botão BackToTop encontrado:", backToTopButton); // Descomente para depurar
 
-    // Função para verificar a posição do scroll e mostrar/esconder o botão
-    function toggleBackToTopButton() {
-      if (backToTopButton) { // Verifica se o botão existe no DOM
+    if (backToTopButton) {
+      let scrollThreshold = 200; 
+
+      function toggleBackToTopButton() {
+        // Certifique-se que o botão ainda existe, caso seja removido dinamicamente (pouco provável aqui)
+        if (!document.getElementById("backToTopBtn")) return; 
+
         if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
           backToTopButton.classList.add("show");
         } else {
           backToTopButton.classList.remove("show");
         }
       }
-    }
 
-    // Adiciona o listener de scroll à janela
-    window.addEventListener('scroll', toggleBackToTopButton);
+      window.addEventListener('scroll', toggleBackToTopButton);
+      toggleBackToTopButton(); // Verifica o estado inicial ao carregar
 
-    // Função para rolar para o topo quando o botão é clicado
-    if (backToTopButton) { // Verifica se o botão existe
       backToTopButton.addEventListener('click', function(e) {
-        e.preventDefault(); // Previne o comportamento padrão do link '#'
+        // console.log("Clique no botão BackToTop!"); // Descomente para depurar
+
+        e.preventDefault();  // Previne o comportamento padrão do link
+        e.stopPropagation(); // Para a propagação do evento (boa prática em alguns casos)
+
         window.scrollTo({
           top: 0,
-          behavior: 'smooth' // Scroll suave
+          behavior: 'smooth'
         });
-      });
-    }
 
-    // Verifica o estado inicial do scroll (caso a página já esteja rolada no carregamento)
-    toggleBackToTopButton();
+        return false; // Em alguns browsers/cenários mais antigos, isto também ajuda a prevenir a ação padrão
+      });
+
+    } else {
+      // console.error("Elemento do botão BackToTop não encontrado no DOM!"); // Descomente para depurar
+    }
   });
 </script>
