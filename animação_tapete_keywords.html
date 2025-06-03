@@ -5,7 +5,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden; /* Previne scroll horizontal se algo ainda exceder */
   }
 
   body {
@@ -14,16 +14,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-size: 16px; */
+    /* font-size: 16px; /* Base para EM */
+    min-height: 100vh; /* Garante que o body ocupa pelo menos a altura do viewport */
   }
 
   .levitating-container {
-    width: 560px;
-    height: 691px;
+    width: 100%; /* Ocupa a largura disponível */
+    max-width: 560px; /* Largura máxima para desktop */
+    height: 691px; /* Altura para desktop */
     position: relative;
     overflow: hidden;
     background-color: transparent; /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */
     box-sizing: border-box;
+    margin-left: auto; /* Para centrar se o body não for flex/center */
+    margin-right: auto;
   }
 
   .keyword {
@@ -32,130 +36,150 @@
     white-space: nowrap;
     text-transform: uppercase;
     font-weight: 500; 
-    font-size: 3.0em;  
+    font-size: 3.0em;  /* Tamanho de fonte BASE para desktop */
     opacity: 0.75; 
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
 
-  .highlight-keyword {
+  .highlight-keyword { /* Aplicado a palavras específicas no HTML */
     font-weight: 900; 
-    font-size: 3.3em; 
+    font-size: 3.3em;  /* Tamanho de fonte para DESTAQUE desktop */
     opacity: 1;
     color: #FFFFFF;
     z-index: 10;
   }
 
+  /* Keyframes (mantidos da última versão com movimento contido) */
   @keyframes driftXY {
     0% { transform: translate(-4px, -2px) scale(1); }
     100% { transform: translate(4px, 2px) scale(1.01); }
   }
-
   @keyframes driftYScale {
     0% { transform: translateY(3px) scale(0.96); opacity: 0.6; }
     100% { transform: translateY(-3px) scale(1.04); opacity: 0.9;}
   }
-
   @keyframes slowPulse {
     0% { opacity: 0.7; transform: scale(0.98); }
     100% { opacity: 0.95; transform: scale(1.02); }
   }
-  
   @keyframes gentleDriftX {
     0% { transform: translateX(-6px); }
     100% { transform: translateX(6px); }
   }
 
-  /* DURAÇÕES ATUALIZADAS PARA MAIOR VELOCIDADE */
+  /* Estilos individuais para Desktop - Durações rápidas mantidas */
   .keyword:nth-child(1) { /* SEO */
     top: 15%; left: 20%;
+    /* font-size é herdado de .highlight-keyword se a classe estiver no HTML */
     animation-name: driftXY, slowPulse;
-    animation-duration: 5s, 3.5s; /* Acelerado */
+    animation-duration: 5s, 3.5s;
     animation-timing-function: linear, ease-in-out;
     animation-delay: -2.5s, -0.5s;
   }
   .keyword:nth-child(2) { /* ADS */
     top: 30%; left: 65%;
     animation-name: driftYScale, gentleDriftX;
-    animation-duration: 4s, 7s; /* Acelerado */
+    animation-duration: 4s, 7s;
     animation-timing-function: linear, linear;
     animation-delay: -5.2s, -1.8s;
   }
   .keyword:nth-child(3) { /* CONTEÚDO */
     top: 50%; left: 15%;
     animation-name: driftXY;
-    animation-duration: 6s; /* Acelerado */
+    animation-duration: 6s;
     animation-timing-function: linear;
     animation-delay: -1.5s;
   }
   .keyword:nth-child(4) { /* ESTRATÉGIA */
-    top: 70%; 
-    left: 38%; 
+    top: 70%; left: 38%; 
     animation-name: driftYScale;
-    animation-duration: 5s; /* Acelerado */
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-delay: -3.3s;
   }
    .keyword:nth-child(5) { /* LEADS */
     top: 8%; left: 60%;
     animation-name: gentleDriftX, slowPulse;
-    animation-duration: 7s, 4s; /* Acelerado */
+    animation-duration: 7s, 4s;
     animation-timing-function: linear, ease-in-out;
     animation-delay: -6.8s, -2.2s;
   }
-
   .keyword:nth-child(6) { /* WEB */
     top: 25%; left: 35%; font-size: 2.8em; opacity: 0.7; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 6s; /* Acelerado */
+    animation-duration: 6s;
     animation-timing-function: linear;
     animation-delay: -4.5s;
   }
   .keyword:nth-child(7) { /* ROI */
     top: 45%; left: 75%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: driftXY;
-    animation-duration: 7s; /* Acelerado */
+    animation-duration: 7s;
     animation-timing-function: linear;
     animation-delay: -7.2s;
   }
   .keyword:nth-child(8) { /* SOCIAL */
     top: 65%; left: 25%; font-size: 2.8em; opacity: 0.75; font-weight: 400;
     animation-name: slowPulse, gentleDriftX;
-    animation-duration: 4s, 7s; /* Acelerado */
+    animation-duration: 4s, 7s;
     animation-timing-function: ease-in-out, linear;
     animation-delay: -1.7s, -3.5s;
   }
   .keyword:nth-child(9) { /* MARKETING */
     top: 85%; left: 30%; font-size: 3.1em; opacity: 0.85; font-weight: 700;
     animation-name: driftXY;
-    animation-duration: 5s; /* Acelerado */
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-delay: -1s;
   }
    .keyword:nth-child(10) { /* FUNIL */
     top: 12%; left: 45%; font-size: 2.7em; opacity: 0.65; font-weight: 400;
     animation-name: driftYScale;
-    animation-duration: 8s; /* Acelerado (mas mantido um pouco mais longo para variedade) */
+    animation-duration: 8s;
     animation-timing-function: linear;
     animation-delay: -8.3s;
   }
   .keyword:nth-child(11) { /* MÉTRICAS */
     top: 38%; left: 10%; font-size: 2.9em; opacity: 0.8; font-weight: 400;
     animation-name: slowPulse;
-    animation-duration: 4s; /* Acelerado */
+    animation-duration: 4s;
     animation-timing-function: ease-in-out;
     animation-delay: -4.8s;
   }
  .keyword:nth-child(12) { /* UX/UI */
-    top: 78%; 
-    left: 28%; 
-    font-size: 3.2em; 
-    opacity: 0.7; 
-    font-weight: 400;
+    top: 78%; left: 28%; font-size: 3.2em; opacity: 0.7; font-weight: 400;
     animation-name: gentleDriftX;
-    animation-duration: 8s; /* Acelerado */
+    animation-duration: 8s;
     animation-timing-function: linear;
     animation-delay: -10.5s;
+  }
+
+  /* AJUSTES PARA MOBILE */
+  @media (max-width: 599px) { /* Ativa quando a tela for mais estreita que 600px */
+    .levitating-container {
+      height: 480px; /* Altura reduzida para mobile, ajuste conforme necessário */
+      /* width: 100%; já está definido e é herdado */
+    }
+
+    /* Reduz o tamanho base das fontes para mobile */
+    .keyword {
+      font-size: 1.8em !important; /* Novo tamanho base para mobile */
+    }
+    .highlight-keyword {
+      font-size: 2.0em !important; /* Novo tamanho de destaque para mobile */
+    }
+
+    /* Sobrescreve os font-size específicos dos :nth-child para mobile */
+    /* Mantendo alguma variação, mas proporcionalmente menores */
+    .keyword:nth-child(6) { font-size: 1.7em !important; }  /* Era 2.8em */
+    .keyword:nth-child(7) { font-size: 1.75em !important; } /* Era 2.9em */
+    .keyword:nth-child(8) { font-size: 1.7em !important; }  /* Era 2.8em */
+    .keyword:nth-child(9) { font-size: 1.9em !important; }  /* Era 3.1em */
+    .keyword:nth-child(10) { font-size: 1.65em !important; }/* Era 2.7em */
+    .keyword:nth-child(11) { font-size: 1.75em !important; }/* Era 2.9em */
+    .keyword:nth-child(12) { font-size: 1.9em !important; } /* Era 3.2em */
+    /* As palavras com .highlight-keyword (1 a 5) usarão o font-size: 2.0em !important; definido acima */
   }
 </style>
 
