@@ -11,7 +11,7 @@
     height: 100%; 
     margin: 0; 
     padding: 0; 
-    overflow-x: hidden; /* Previne scroll horizontal na página */
+    overflow-x: hidden; 
   } 
 
   body { 
@@ -24,9 +24,9 @@
   } 
 
   .levitating-container { 
-    width: 100%;        /* Ocupa a largura disponível */
-    max-width: 560px;   /* Mas limitado a 560px para desktop */
-    height: 691px;      /* Altura fixa para desktop */
+    width: 100%;
+    max-width: 560px; 
+    height: 691px; 
     position: relative; 
     overflow: hidden; 
     background-color: transparent; /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */ 
@@ -47,7 +47,7 @@
     animation-direction: alternate; 
   } 
 
-  .highlight-keyword { /* Aplicado via HTML às palavras que quer maiores */
+  .highlight-keyword { 
     font-weight: 900;  
     font-size: 3.3em;  /* Tamanho de fonte para DESTAQUE desktop */
     opacity: 1; 
@@ -55,7 +55,7 @@
     z-index: 10; 
   } 
 
-  /* Keyframes (mantidos da versão anterior com movimento contido) */
+  /* Keyframes (mantidos) */
   @keyframes driftXY { 
     0% { transform: translate(-4px, -2px) scale(1); } 
     100% { transform: translate(4px, 2px) scale(1.01); } 
@@ -73,7 +73,7 @@
     100% { transform: translateX(6px); } 
   } 
 
-  /* POSIÇÕES DAS PALAVRAS (mais à esquerda) E DURAÇÕES RÁPIDAS */
+  /* Estilos individuais para Desktop */
   .keyword:nth-child(1) { /* SEO */ 
     top: 15%; left: 10%; 
     animation-name: driftXY, slowPulse; 
@@ -88,23 +88,21 @@
     animation-timing-function: linear, linear; 
     animation-delay: -5.2s, -1.8s; 
   } 
-  .keyword:nth-child(3) { /* CONTEÚDO */ 
+  .keyword:nth-child(3) { /* CONTEÚDO - Tamanho Desktop: 3.3em (via .highlight-keyword) */ 
     top: 50%; left: 5%; 
-    /* font-size é de .highlight-keyword (3.3em). Será reduzido no mobile. */
     animation-name: driftXY; 
     animation-duration: 6s; 
     animation-timing-function: linear; 
     animation-delay: -1.5s; 
   } 
-  .keyword:nth-child(4) { /* ESTRATÉGIA */ 
+  .keyword:nth-child(4) { /* ESTRATÉGIA - Tamanho Desktop: 3.3em (via .highlight-keyword) */ 
     top: 70%; left: 25%; 
-    /* font-size é de .highlight-keyword (3.3em). Será reduzido no mobile. */
     animation-name: driftYScale; 
     animation-duration: 5s; 
     animation-timing-function: linear; 
     animation-delay: -3.3s; 
   } 
-  .keyword:nth-child(5) { /* LEADS */ 
+   .keyword:nth-child(5) { /* LEADS - Tamanho Desktop: 3.3em (via .highlight-keyword) */ 
     top: 8%; left: 50%; 
     animation-name: gentleDriftX, slowPulse; 
     animation-duration: 7s, 4s; 
@@ -135,9 +133,9 @@
     animation-timing-function: ease-in-out, linear; 
     animation-delay: -1.7s, -3.5s; 
   } 
-  .keyword:nth-child(9) { /* MARKETING */ 
+  .keyword:nth-child(9) { /* MARKETING - Tamanho Desktop: 3.1em */ 
     top: 85%; left: 20%; 
-    font-size: 3.1em; opacity: 0.85; font-weight: 700; /* Será reduzido no mobile */
+    font-size: 3.1em; opacity: 0.85; font-weight: 700; 
     animation-name: driftXY; 
     animation-duration: 5s; 
     animation-timing-function: linear; 
@@ -169,41 +167,35 @@
   } 
 
   /* === AJUSTES ESPECÍFICOS PARA MOBILE === */
-  @media (max-width: 480px) { /* Pode usar 599px se quiser um breakpoint mais cedo */
+  @media (max-width: 480px) { 
     .levitating-container {
-      /* A largura continua a ser 100% do ecrã, max-width: 560px. */
-      /* A altura continua 691px, mostrando uma "fatia" em mobile. */
-      /* Se quiser reduzir a altura em mobile, descomente e ajuste: */
-      /* height: 70vh !important; */ /* Exemplo: 70% da altura do viewport */
+      /* Altura pode ser ajustada para mobile se desejar, ex: height: 80vh !important; */
+      /* Por agora, mantém a altura de desktop para mostrar a "fatia" central */
     }
 
     /* Reduz o tamanho da fonte APENAS para as palavras especificadas em mobile */
-    /* CONTEÚDO (originalmente .highlight-keyword, herdaria 3.3em) */
-    .levitating-container .keyword:nth-child(3) { 
-      font-size: 2.0em !important; /* AJUSTE CONFORME NECESSÁRIO */
+    .levitating-container .keyword:nth-child(3) { /* CONTEÚDO */ 
+      font-size: 2.7em !important; /* Aumentado ligeiramente (era 2.0em) */
     }
-    /* ESTRATÉGIA (originalmente .highlight-keyword, herdaria 3.3em) */
-    .levitating-container .keyword:nth-child(4) { 
-      font-size: 1.9em !important; /* AJUSTE CONFORME NECESSÁRIO - ligeiramente menor por ser mais comprida */
+    .levitating-container .keyword:nth-child(4) { /* ESTRATÉGIA */ 
+      font-size: 2.6em !important; /* Aumentado ligeiramente (era 1.9em) */
     }
-    /* MARKETING (tinha font-size: 3.1em; no desktop) */
-    .levitating-container .keyword:nth-child(9) { 
-      font-size: 1.8em !important; /* AJUSTE CONFORME NECESSÁRIO */
+    .levitating-container .keyword:nth-child(5) { /* LEADS - AGORA INCLUÍDO */ 
+      font-size: 2.8em !important; /* Desktop é 3.3em, este é um bom meio termo */
+    }
+    .levitating-container .keyword:nth-child(9) { /* MARKETING */ 
+      font-size: 2.5em !important; /* Aumentado ligeiramente (era 1.8em) */
     }
 
-    /* Opcional: Se outras palavras AINDA estiverem muito grandes em mobile,
-       pode adicionar regras para elas aqui também, ou reduzir o font-size
-       base em .keyword e .highlight-keyword DENTRO desta media query.
-       Exemplo para reduzir todas as outras que são .highlight-keyword:
-       .levitating-container .highlight-keyword {
-         font-size: 2.5em !important; // Reduz todas as highlight em mobile
-       }
-       E para as .keyword normais:
-       .levitating-container .keyword {
-         font-size: 2.2em !important; // Reduz todas as normais em mobile
-       }
-       MAS ISTO IRIA CONTRA "gostava das dimensões iniciais" para as outras palavras.
-       Por isso, foquei apenas nas que mencionou.
+    /* Se outras palavras .highlight-keyword (como SEO, ADS) também precisarem de ajuste em mobile,
+       pode adicionar regras para :nth-child(1) e :nth-child(2) aqui,
+       ou criar uma regra mais geral para .highlight-keyword dentro da media query. Ex:
+    .levitating-container .highlight-keyword {
+        font-size: 2.8em !important; // Reduz TODAS as highlight-keywords em mobile para este tamanho
+    } 
+    Isso sobrescreveria os ajustes individuais acima para :nth-child(3,4,5) se não forem mais específicos
+    ou se a classe .highlight-keyword tiver maior especificidade no seu HTML para essas palavras.
+    Por agora, os ajustes individuais são mais precisos.
     */
   }
 </style>
