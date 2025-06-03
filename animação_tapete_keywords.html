@@ -11,7 +11,7 @@
     height: 100%; 
     margin: 0; 
     padding: 0; 
-    overflow: hidden; /* Alterado de overflow-x: hidden para overflow: hidden para consistência */
+    overflow-x: hidden; /* Previne scroll horizontal na página */
   } 
 
   body { 
@@ -20,17 +20,18 @@
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    min-height: 100vh; /* Garante que o body ocupa pelo menos a altura do viewport */
+    min-height: 100vh;
   } 
 
   .levitating-container { 
-    width: 560px; 
-    height: 691px; 
+    width: 100%;        /* Ocupa a largura disponível */
+    max-width: 560px;   /* Mas limitado a 560px para desktop */
+    height: 691px;      /* Altura fixa para desktop */
     position: relative; 
     overflow: hidden; 
     background-color: transparent; /* O FUNDO DA SUA PÁGINA CARRD DEVE SER ESCURO */ 
     box-sizing: border-box; 
-    margin-left: auto; /* Para centrar se o body não for flex/center, ou para reforçar */
+    margin-left: auto; 
     margin-right: auto;
   } 
 
@@ -40,79 +41,78 @@
     white-space: nowrap; 
     text-transform: uppercase; 
     font-weight: 500;  
-    font-size: 3.0em;   
+    font-size: 3.0em;   /* Tamanho de fonte BASE para desktop */
     opacity: 0.75;  
     animation-iteration-count: infinite; 
     animation-direction: alternate; 
   } 
 
-  .highlight-keyword { 
+  .highlight-keyword { /* Aplicado via HTML às palavras que quer maiores */
     font-weight: 900;  
-    font-size: 3.3em;  
+    font-size: 3.3em;  /* Tamanho de fonte para DESTAQUE desktop */
     opacity: 1; 
     color: #FFFFFF; 
     z-index: 10; 
   } 
 
+  /* Keyframes (mantidos da versão anterior com movimento contido) */
   @keyframes driftXY { 
     0% { transform: translate(-4px, -2px) scale(1); } 
     100% { transform: translate(4px, 2px) scale(1.01); } 
   } 
-
   @keyframes driftYScale { 
     0% { transform: translateY(3px) scale(0.96); opacity: 0.6; } 
     100% { transform: translateY(-3px) scale(1.04); opacity: 0.9;} 
   } 
-
   @keyframes slowPulse { 
     0% { opacity: 0.7; transform: scale(0.98); } 
     100% { opacity: 0.95; transform: scale(1.02); } 
   } 
-   
   @keyframes gentleDriftX { 
     0% { transform: translateX(-6px); } 
     100% { transform: translateX(6px); } 
   } 
 
-  /* POSIÇÕES DAS PALAVRAS AJUSTADAS MAIS À ESQUERDA */
-  /* As outras propriedades de cada :nth-child (top, animations, font-size específico etc.) são mantidas do seu último código */
+  /* POSIÇÕES DAS PALAVRAS (mais à esquerda) E DURAÇÕES RÁPIDAS */
   .keyword:nth-child(1) { /* SEO */ 
-    top: 15%; left: 10%; /* MODIFICADO */
+    top: 15%; left: 10%; 
     animation-name: driftXY, slowPulse; 
     animation-duration: 5s, 3.5s; 
     animation-timing-function: linear, ease-in-out; 
     animation-delay: -2.5s, -0.5s; 
   } 
   .keyword:nth-child(2) { /* ADS */ 
-    top: 30%; left: 45%; /* MODIFICADO */
+    top: 30%; left: 45%; 
     animation-name: driftYScale, gentleDriftX; 
     animation-duration: 4s, 7s; 
     animation-timing-function: linear, linear; 
     animation-delay: -5.2s, -1.8s; 
   } 
   .keyword:nth-child(3) { /* CONTEÚDO */ 
-    top: 50%; left: 5%;  /* MODIFICADO */
+    top: 50%; left: 5%; 
+    /* font-size é de .highlight-keyword (3.3em). Será reduzido no mobile. */
     animation-name: driftXY; 
     animation-duration: 6s; 
     animation-timing-function: linear; 
     animation-delay: -1.5s; 
   } 
   .keyword:nth-child(4) { /* ESTRATÉGIA */ 
-    top: 70%; left: 25%; /* MODIFICADO */
+    top: 70%; left: 25%; 
+    /* font-size é de .highlight-keyword (3.3em). Será reduzido no mobile. */
     animation-name: driftYScale; 
     animation-duration: 5s; 
     animation-timing-function: linear; 
     animation-delay: -3.3s; 
   } 
   .keyword:nth-child(5) { /* LEADS */ 
-    top: 8%; left: 50%; /* MODIFICADO */
+    top: 8%; left: 50%; 
     animation-name: gentleDriftX, slowPulse; 
     animation-duration: 7s, 4s; 
     animation-timing-function: linear, ease-in-out; 
     animation-delay: -6.8s, -2.2s; 
   } 
   .keyword:nth-child(6) { /* WEB */ 
-    top: 25%; left: 20%; /* MODIFICADO */
+    top: 25%; left: 20%; 
     font-size: 2.8em; opacity: 0.7; font-weight: 400; 
     animation-name: driftYScale; 
     animation-duration: 6s; 
@@ -120,7 +120,7 @@
     animation-delay: -4.5s; 
   } 
   .keyword:nth-child(7) { /* ROI */ 
-    top: 45%; left: 55%; /* MODIFICADO */
+    top: 45%; left: 55%; 
     font-size: 2.9em; opacity: 0.8; font-weight: 400; 
     animation-name: driftXY; 
     animation-duration: 7s; 
@@ -128,7 +128,7 @@
     animation-delay: -7.2s; 
   } 
   .keyword:nth-child(8) { /* SOCIAL */ 
-    top: 65%; left: 12%; /* MODIFICADO */
+    top: 65%; left: 12%; 
     font-size: 2.8em; opacity: 0.75; font-weight: 400; 
     animation-name: slowPulse, gentleDriftX; 
     animation-duration: 4s, 7s; 
@@ -136,15 +136,15 @@
     animation-delay: -1.7s, -3.5s; 
   } 
   .keyword:nth-child(9) { /* MARKETING */ 
-    top: 85%; left: 20%; /* MODIFICADO */
-    font-size: 3.1em; opacity: 0.85; font-weight: 700; 
+    top: 85%; left: 20%; 
+    font-size: 3.1em; opacity: 0.85; font-weight: 700; /* Será reduzido no mobile */
     animation-name: driftXY; 
     animation-duration: 5s; 
     animation-timing-function: linear; 
     animation-delay: -1s; 
   } 
   .keyword:nth-child(10) { /* FUNIL */ 
-    top: 12%; left: 30%; /* MODIFICADO */
+    top: 12%; left: 30%; 
     font-size: 2.7em; opacity: 0.65; font-weight: 400; 
     animation-name: driftYScale; 
     animation-duration: 8s; 
@@ -152,7 +152,7 @@
     animation-delay: -8.3s; 
   } 
   .keyword:nth-child(11) { /* MÉTRICAS */ 
-    top: 38%; left: 5%;  /* Mantido (já estava à esquerda) */
+    top: 38%; left: 5%; 
     font-size: 2.9em; opacity: 0.8; font-weight: 400; 
     animation-name: slowPulse; 
     animation-duration: 4s; 
@@ -160,13 +160,52 @@
     animation-delay: -4.8s; 
   } 
   .keyword:nth-child(12) { /* UX/UI */ 
-    top: 78%; left: 18%; /* MODIFICADO */
+    top: 78%; left: 18%; 
     font-size: 3.2em; opacity: 0.7; font-weight: 400; 
     animation-name: gentleDriftX; 
     animation-duration: 8s; 
     animation-timing-function: linear; 
     animation-delay: -10.5s; 
   } 
+
+  /* === AJUSTES ESPECÍFICOS PARA MOBILE === */
+  @media (max-width: 480px) { /* Pode usar 599px se quiser um breakpoint mais cedo */
+    .levitating-container {
+      /* A largura continua a ser 100% do ecrã, max-width: 560px. */
+      /* A altura continua 691px, mostrando uma "fatia" em mobile. */
+      /* Se quiser reduzir a altura em mobile, descomente e ajuste: */
+      /* height: 70vh !important; */ /* Exemplo: 70% da altura do viewport */
+    }
+
+    /* Reduz o tamanho da fonte APENAS para as palavras especificadas em mobile */
+    /* CONTEÚDO (originalmente .highlight-keyword, herdaria 3.3em) */
+    .levitating-container .keyword:nth-child(3) { 
+      font-size: 2.0em !important; /* AJUSTE CONFORME NECESSÁRIO */
+    }
+    /* ESTRATÉGIA (originalmente .highlight-keyword, herdaria 3.3em) */
+    .levitating-container .keyword:nth-child(4) { 
+      font-size: 1.9em !important; /* AJUSTE CONFORME NECESSÁRIO - ligeiramente menor por ser mais comprida */
+    }
+    /* MARKETING (tinha font-size: 3.1em; no desktop) */
+    .levitating-container .keyword:nth-child(9) { 
+      font-size: 1.8em !important; /* AJUSTE CONFORME NECESSÁRIO */
+    }
+
+    /* Opcional: Se outras palavras AINDA estiverem muito grandes em mobile,
+       pode adicionar regras para elas aqui também, ou reduzir o font-size
+       base em .keyword e .highlight-keyword DENTRO desta media query.
+       Exemplo para reduzir todas as outras que são .highlight-keyword:
+       .levitating-container .highlight-keyword {
+         font-size: 2.5em !important; // Reduz todas as highlight em mobile
+       }
+       E para as .keyword normais:
+       .levitating-container .keyword {
+         font-size: 2.2em !important; // Reduz todas as normais em mobile
+       }
+       MAS ISTO IRIA CONTRA "gostava das dimensões iniciais" para as outras palavras.
+       Por isso, foquei apenas nas que mencionou.
+    */
+  }
 </style>
 </head>
 <body>
